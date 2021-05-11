@@ -72,6 +72,7 @@ const schema = buildSchema(`
         headshots: Float!
         damageDone: Float!
         damageTaken: Float!
+        lifetimeKDRatio: Float!
     }
 
     type teamStatsType {

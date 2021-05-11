@@ -309,7 +309,7 @@ const users = [
     }
 ]
 
-const getMultipleKDs123 = async (players) => {
+const getMultipleKDs = async (players) => {
     let playersWithKDs = [];
     for (const player of players) {
         if (player.username === "-1") {
@@ -324,79 +324,11 @@ const getMultipleKDs123 = async (players) => {
     return playersWithKDs;
 }
 
-const getLifetimeKD123 = (players, uno) => {
+const getLifetimeKD = (players, uno) => {
     let relevantPlayer = players.filter(player => player.uno === uno);
     console.log(relevantPlayer.lifetimeKDRatio);
     return relevantPlayer.lifetimeKDRatio;
 }
-
-const getLifetimeDataByUNO = async (platform, username, uno) => {
-    let tokens = await getTokens();
-    let tokensString = 'ACT_SSO_COOKIE=' + tokens.sso + '; ACT_SSO_COOKIE_EXPIRY=1591153892430; atkn=' + tokens.atkn;
-
-    const lifetimeDataConfig = {
-        method: 'get',
-        url: `https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/${platform}/uno/${uno}/profile/type/wz`,
-        headers: {
-            'Cookie': tokensString
-        }
-    }
-
-    return new Promise((res, rej) => {
-        axios(lifetimeDataConfig)
-            .then(function (response) {
-                if (response.data.status === "error") {
-                    res(response.data)
-                }
-                else {
-                    response.data.data.username = username;
-                    res(response.data)
-                }
-            })
-    })
-}
-
-const getLifetimeKD = async (username, uno) => {
-    let platform = "battle";
-    let resp = await getLifetimeDataByUNO(platform, username, uno);
-    if (resp.status === "success") {
-        let kdRatio = resp.data.lifetime.mode.br_all.properties.kdRatio;
-        return { username, kdRatio }
-    }
-    else if (resp.data.message === "Not permitted: not allowed") {
-        return { username, kdRatio: -1 };
-    }
-
-    platform = "psn";
-    resp = await getLifetimeDataByUNO(platform, username, uno);
-    if (resp.status === "success") {
-        let kdRatio = resp.data.lifetime.mode.br_all.properties.kdRatio;
-        return { username, kdRatio }
-    }
-    else if (resp.data.message === "Not permitted: not allowed") {
-        return { username, kdRatio: -1 };
-    }
-
-    platform = "xbl";
-    resp = await getLifetimeDataByUNO(platform, username, uno);
-    if (resp.status === "success") {
-        let kdRatio = resp.data.lifetime.mode.br_all.properties.kdRatio;
-        return { username, kdRatio }
-    }
-    else if (resp.data.message === "Not permitted: not allowed") {
-        return { username, kdRatio: -1 };
-    }
-}
-
-const getMultipleKDs = async (playersList) => {
-    let players = {};
-    for (const player of playersList) {
-        let playerWithKD = await getLifetimeKD(player.username, player.uno);
-        players[player.uno] = playerWithKD;
-    }
-    return players;
-}
-
 
 const formatMatchByID = async (data) => {
     let obj = {
@@ -415,8 +347,8 @@ const formatMatchByID = async (data) => {
         }
         return obj;
     })
-    let playersWithKDs = await getMultipleKDs(usernamesAndUnos);
-    console.log(playersWithKDs);
+    let playersWithActiIDs = await searchMultipleUsers(usernamesAndUnos);
+    let playersWithKDs = await getMultipleKDs(playersWithActiIDs);
 
     let relevantData = data.map(player => {
         let playerStats = player.playerStats;
@@ -433,11 +365,16 @@ const formatMatchByID = async (data) => {
             headshots: playerStats.headshots,
             teamPlacement: playerStats.teamPlacement,
             damageDone: playerStats.damageDone,
-            damageTaken: playerStats.damageTaken,
-            lifetimeKDRatio: playersWithKDs[specificPlayer.uno].kdRatio
+            damageTaken: playerStats.damageTaken
         };
         return relevantStats;
     })
+
+    // this does not work yet
+    for (let i = 0; i < relevantData.length; i++) {
+        let kd = getLifetimeKD(playersWithKDs, relevantData[i].uno);
+        relevantData[i].lifetimeKDRatio = kd;
+    }
 
     let teams = sortByTeam(relevantData)
     obj.teams = teams;
@@ -470,7 +407,6 @@ const getMatchByID = async (id) => {
             });
     })
 }
-// getMatchByID("8853234029368613444");
 
 const getMatchByIDRAW = async (id) => {
     let tokens = await getTokens();
