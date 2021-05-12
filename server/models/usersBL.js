@@ -77,7 +77,10 @@ const relevantProfileData = (data) => {
         brQuads: modesData.br_brquads ? modesData.br_brquads.properties : null,
         rebirthDous: modesData.br_rebirth_rbrthduos ? modesData.br_rebirth_rbrthduos.properties : null,
         rebirthTrios: modesData.br_rebirth_rbrthtrios ? modesData.br_rebirth_rbrthtrios.properties : null,
-        rebirthQuads: modesData.br_rebirth_rbrthquad ? modesData.br_rebirth_rbrthquad.properties : null
+        rebirthQuads: modesData.br_rebirth_rbrthquad ? modesData.br_rebirth_rbrthquad.properties : null,
+        resurgenceDous: modesData.br_rebirth_resurgence_dous ? modesData.br_rebirth_resurgence_dous.properties : null,
+        resurgenceTrios: modesData.br_rebirth_resurgence_trios ? modesData.br_rebirth_resurgence_trios.properties : null,
+        resurgenceQuads: modesData.br_rebirth_resurgence_quads ? modesData.br_rebirth_resurgence_quads.properties : null
     }
 
     let userData = {
@@ -108,7 +111,10 @@ const relevantProfileData = (data) => {
             brQuads: weeklyModeRelevantData(currentWeeklyModes.brQuads),
             rebirthDous: weeklyModeRelevantData(currentWeeklyModes.rebirthDous),
             rebirthTrios: weeklyModeRelevantData(currentWeeklyModes.rebirthTrios),
-            rebirthQuads: weeklyModeRelevantData(currentWeeklyModes.rebirthQuads)
+            rebirthQuads: weeklyModeRelevantData(currentWeeklyModes.rebirthQuads),
+            resurgenceDous: weeklyModeRelevantData(currentWeeklyModes.resurgenceDous),
+            resurgenceTrios: weeklyModeRelevantData(currentWeeklyModes.resurgenceTrios),
+            resurgenceQuads: weeklyModeRelevantData(currentWeeklyModes.resurgenceQuads)
         }
     }
     return userData;

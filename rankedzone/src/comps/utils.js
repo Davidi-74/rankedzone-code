@@ -219,6 +219,15 @@ const getWeeklyStats = async (username, platform) => {
                 rebirthQuads {
                     ${weeklyModeData}
                 }
+                resurgenceDous {
+                    ${weeklyModeData}
+                }
+                resurgenceTrios {
+                    ${weeklyModeData}
+                }
+                resurgenceQuads {
+                    ${weeklyModeData}
+                }
             }
         }
     }`

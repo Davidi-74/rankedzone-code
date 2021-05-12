@@ -35,6 +35,9 @@ const schema = buildSchema(`
         rebirthDous: weeklyDataType
         rebirthTrios: weeklyDataType
         rebirthQuads: weeklyDataType
+        resurgenceDous: weeklyDataType
+        resurgenceTrios: weeklyDataType
+        resurgenceQuads: weeklyDataType
     }
 
     type weeklyDataType {
