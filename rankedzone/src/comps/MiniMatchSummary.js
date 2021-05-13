@@ -21,7 +21,7 @@ const MiniMatchSummary = (props) => {
                     ID: {match.matchID} <br />
                     Mode: {match.mode} <br />
                     Start: {String(matchStart)} <br />
-                    Placement: {match.teamStats.placement} <br />
+                    Placement: {match.teamStats.placement ? match.teamStats.placement : "N/A"} <br />
                     <br />
                     <Link to={`/match/${match.matchID}/${props.uno}`}>
                         <Button>Match Details</Button>

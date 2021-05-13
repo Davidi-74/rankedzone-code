@@ -1,4 +1,4 @@
-import { Button, MenuItem, Select, TextField, Container, ListItemIcon, InputLabel, FormControl } from '@material-ui/core'
+import { Button, MenuItem, Select, TextField, Container, ListItemIcon, InputLabel, FormControl, Grid } from '@material-ui/core'
 import { useState } from 'react'
 import utils from './utils'
 import { BattleIcon, PSNIcon, XBLIcon } from '../mui/icons'
@@ -40,31 +40,43 @@ const HomePage = (props) => {
 
     return (
         <Container>
-            <h1>SEARCH PROFILE</h1>
-            <form onSubmit={(e) => getProfile(e)}>
-                <TextField type="text" label="Username" InputLabelProps={{ shrink: true }} placeholder='e.g "Davidi74#2560"' inputLa onChange={e => setUsername(e.target.value)} />&nbsp;
-                <Select value={platform} style={{ width: "70px", height: "50px" }} renderValue={(value) => showSelectedValueIcon(value)} onChange={e => setPlatform(e.target.value)} >
-                    <MenuItem value="battle">
-                        <ListItemIcon>
-                            <BattleIcon />
-                        </ListItemIcon>
-                        Battle.net
-                    </MenuItem>
-                    <MenuItem value="psn">
-                        <ListItemIcon>
-                            <PSNIcon />
-                        </ListItemIcon>
-                        PlayStation
-                    </MenuItem>
-                    <MenuItem value="xbl">
-                        <ListItemIcon>
-                            <XBLIcon />
-                        </ListItemIcon>
-                        XBOX
-                    </MenuItem>
-                </Select>&nbsp;
-                <Button onClick={getProfile} type="submit">Search</Button>
-            </form>
+            <Grid container direction="column" >
+                <Grid item xs={12} style={{ marginTop: "5%", marginBottom: "-40px" }}>
+                    <h1>SEARCH PROFILE</h1>
+                </Grid>
+                <form onSubmit={(e) => getProfile(e)}>
+                    <Grid container item direction="row" justify="center" alignItems="center">
+                        <Grid item xs={10} style={{ margin: 1, padding: 0, flexBasis: "15%" }}>
+                            <TextField type="text" label="Username" InputLabelProps={{ shrink: true }} placeholder='e.g "Davidi74#2560"' style={{ width: "225px" }} onChange={e => setUsername(e.target.value)} />
+                        </Grid>
+                        <Grid item xs={2} style={{ margin: 0, padding: 0, flexBasis: 0, paddingTop: "25px" }}>
+                            <Select value={platform} style={{ width: "65px", height: "47.5px", paddingBottom: "20%" }} renderValue={(value) => showSelectedValueIcon(value)} onChange={e => setPlatform(e.target.value)} >
+                                <MenuItem value="battle" >
+                                    <ListItemIcon >
+                                        <BattleIcon />
+                                    </ListItemIcon>
+                                Battle.net
+                            </MenuItem>
+                                <MenuItem value="psn">
+                                    <ListItemIcon>
+                                        <PSNIcon />
+                                    </ListItemIcon>
+                                PlayStation
+                            </MenuItem>
+                                <MenuItem value="xbl">
+                                    <ListItemIcon>
+                                        <XBLIcon />
+                                    </ListItemIcon>
+                                XBOX
+                                </MenuItem>
+                            </Select><br /><br />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button onClick={getProfile} type="submit" style={{ width: "290px" }}>Search</Button>
+                        </Grid>
+                    </Grid>
+                </form>
+            </Grid>
         </Container>
     )
 }

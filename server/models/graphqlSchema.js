@@ -79,7 +79,7 @@ const schema = buildSchema(`
     }
 
     type teamStatsType {
-        placement: Float!
+        placement: Float
         team: String!
     }
 
