@@ -44,7 +44,8 @@ const darkTheme = createMuiTheme({
         },
         MuiPaper: {
             root: {
-                backgroundColor: "#212121"
+                backgroundColor: "white",
+                margin: "4px"
             }
         }
     },

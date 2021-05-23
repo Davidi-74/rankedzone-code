@@ -1,3 +1,6 @@
+import { BattleIcon, PSNIcon, XBLIcon } from '../mui/icons'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+
 const serverURL = "http://localhost:8000/graphql"
 
 const getProfile = async (username, platform) => {
@@ -345,4 +348,16 @@ const getMatchDetails = async (matchID) => {
     }
 }
 
-export default { getProfile, searchProfile, getLifetimeStats, getWeeklyStats, getMatches, getMatchDetails }
+const showSelectedValueIcon = (value) => {
+    if (value === "battle") {
+        return <BattleIcon />
+    }
+    if (value === "psn") {
+        return <PSNIcon />
+    }
+    if (value === "xbl") {
+        return <XBLIcon />
+    }
+}
+
+export default { getProfile, searchProfile, getLifetimeStats, getWeeklyStats, getMatches, getMatchDetails, showSelectedValueIcon }

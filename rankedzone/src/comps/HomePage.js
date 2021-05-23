@@ -1,12 +1,12 @@
-import { Button, MenuItem, Select, TextField, Container, ListItemIcon, InputLabel, FormControl, Grid } from '@material-ui/core'
+import { Button, MenuItem, Select, TextField, Container, ListItemIcon, InputLabel, FormControl, Grid, ListItem } from '@material-ui/core'
 import { useState } from 'react'
 import utils from './utils'
 import { BattleIcon, PSNIcon, XBLIcon } from '../mui/icons'
+import { homepagePlatforms } from '../mui/homepagePlatforms'
 
 const HomePage = (props) => {
     const [username, setUsername] = useState("");
     const [platform, setPlatform] = useState("battle")
-    const [flag, setFlag] = useState(false)
 
     const getProfile = async (e) => {
         e.preventDefault();
@@ -38,6 +38,7 @@ const HomePage = (props) => {
         }
     }
 
+    const platformsStyle = homepagePlatforms();
     return (
         <Container>
             <Grid container direction="column" >
@@ -50,19 +51,19 @@ const HomePage = (props) => {
                             <TextField type="text" label="Username" InputLabelProps={{ shrink: true }} placeholder='e.g "Davidi74#2560"' style={{ width: "225px" }} onChange={e => setUsername(e.target.value)} />
                         </Grid>
                         <Grid item xs={2} style={{ margin: 0, padding: 0, flexBasis: 0, paddingTop: "25px" }}>
-                            <Select value={platform} style={{ width: "65px", height: "47.5px", paddingBottom: "20%" }} renderValue={(value) => showSelectedValueIcon(value)} onChange={e => setPlatform(e.target.value)} >
-                                <MenuItem value="battle" >
+                            <Select value={platform} style={{ width: "65px", height: "47.5px", paddingBottom: "20%" }} MenuProps={{ classes: { paper: platformsStyle.root } }} renderValue={(value) => <ListItemIcon>{utils.showSelectedValueIcon(value)}</ListItemIcon>} onChange={e => setPlatform(e.target.value)} >
+                                <MenuItem value="battle">
                                     <ListItemIcon >
                                         <BattleIcon />
                                     </ListItemIcon>
                                 Battle.net
-                            </MenuItem>
+                                </MenuItem>
                                 <MenuItem value="psn">
                                     <ListItemIcon>
                                         <PSNIcon />
                                     </ListItemIcon>
                                 PlayStation
-                            </MenuItem>
+                                </MenuItem>
                                 <MenuItem value="xbl">
                                     <ListItemIcon>
                                         <XBLIcon />

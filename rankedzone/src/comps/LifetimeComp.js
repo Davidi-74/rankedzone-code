@@ -28,9 +28,9 @@ const LifetimeComp = (props) => {
 
     console.log(stats);
     return (
-        <Container>
-            Lifetime Battle Royale Stats <br />
-            <Box>
+        <Box>
+            <h3>Lifetime Battle Royale Stats</h3>
+            <Box width="100%">
                 {stats != "" ?
                     <Grid container>
                         <Grid item xs={12}>
@@ -60,12 +60,12 @@ const LifetimeComp = (props) => {
                         </Grid>
                         <Grid item xs={6}>
                             <Paper>
-                                Top Five: {stats.lifetime.topFive} <br />
+                                Top 5: {stats.lifetime.topFive} <br />
                             </Paper>
                         </Grid>
                         <Grid item xs={6}>
                             <Paper>
-                                Top Ten: {stats.lifetime.topTen} <br />
+                                Top 10: {stats.lifetime.topTen} <br />
                             </Paper>
                         </Grid>
                         <Grid item xs={6}>
@@ -85,12 +85,17 @@ const LifetimeComp = (props) => {
                         </Grid>
                         <Grid item xs={6}>
                             <Paper>
-                                Time Played: {secondsToDhms(stats.lifetime.timePlayed)} <br />
+                                Score: {stats.lifetime.score}
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Paper>
+                                Time Played: <br /> {secondsToDhms(stats.lifetime.timePlayed)} <br />
                             </Paper>
                         </Grid>
                     </Grid> : ""}
             </Box>
-        </Container>
+        </Box>
     )
 }
 
