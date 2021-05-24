@@ -9,7 +9,7 @@ const darkTheme = createMuiTheme({
                 textAlign: "center",
                 fontFamily: "Calibri",
                 fontSize: 20,
-                height: "100vh",
+                height: "100%",
                 display: "flex",
                 flexDirection: "column"
             }
@@ -45,7 +45,8 @@ const darkTheme = createMuiTheme({
         MuiPaper: {
             root: {
                 backgroundColor: "white",
-                margin: "4px"
+                margin: "4px",
+                borderRadius: "5px"
             }
         }
     },

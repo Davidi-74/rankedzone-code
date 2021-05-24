@@ -16,7 +16,7 @@ const WeeklyComp = (props) => {
 
     return (
         <div>
-            weekly <br />
+            <h3>Weekly Battle Royale Stats</h3> <br />
             {/* {stats != "" ? JSON.stringify(stats) : ""} */}
         </div>
     )

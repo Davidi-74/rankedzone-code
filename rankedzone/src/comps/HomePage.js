@@ -40,7 +40,7 @@ const HomePage = (props) => {
 
     const platformsStyle = homepagePlatforms();
     return (
-        <Container>
+        <Container style={{ height: "100vh" }}>
             <Grid container direction="column" >
                 <Grid item xs={12} style={{ marginTop: "5%", marginBottom: "-40px" }}>
                     <h1>SEARCH PROFILE</h1>
