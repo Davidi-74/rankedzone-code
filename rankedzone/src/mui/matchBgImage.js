@@ -13,7 +13,7 @@ const bgImage = makeStyles({
     rebirth: {
         backgroundImage: `url(${rebirthIsland})`,
         backgroundSize: "cover",
-        backgroundPositionY: "40%",
+        backgroundPositionY: "45%",
         margin: "3px",
         width: "-webkit-fill-available"
     }

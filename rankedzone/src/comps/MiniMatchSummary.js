@@ -1,4 +1,4 @@
-import { Button, ButtonBase, Container, Grid, Paper } from "@material-ui/core"
+import { Box, Button, ButtonBase, Container, Grid, Paper } from "@material-ui/core"
 import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import placement from '../mui/placementPaper'
@@ -65,7 +65,9 @@ const MiniMatchSummary = (props) => {
                     <Grid container item direction="row" xs={12}>
                         <Grid item xs={3}>
                             <Paper className={placementColor(match.teamStats.placement)} elevation={3}>
-                                <h2>{match.teamStats.placement ? match.teamStats.placement : "N/A"}</h2>
+                                <Box fontWeight="bold">
+                                    <h2>{match.teamStats.placement ? match.teamStats.placement : "N/A"}</h2>
+                                </Box>
                             </Paper>
                         </Grid>
                         <Grid item xs={3}>
@@ -108,11 +110,18 @@ const MiniMatchSummary = (props) => {
     }
 
     return (
-        <ButtonBase>
-            <Paper onClick={matchRef} className={pickBgImage(match.mode)}>
-                {items}
-            </Paper>
-        </ButtonBase>
+        <div>
+            {
+                match != null ?
+                    <ButtonBase style={{ width: "-webkit-fill-available" }}>
+                        <Paper onClick={matchRef} className={pickBgImage(match.mode)}>
+                            {items}
+                        </Paper>
+                    </ButtonBase>
+                    :
+                    ""
+            }
+        </div>
     )
 }
 
