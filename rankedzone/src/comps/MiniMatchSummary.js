@@ -1,4 +1,4 @@
-import { Box, Button, ButtonBase, Container, Grid, Paper } from "@material-ui/core"
+import { Box, Button, ButtonBase, Container, Divider, Grid, Paper } from "@material-ui/core"
 import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import placement from '../mui/placementPaper'
@@ -24,8 +24,8 @@ const MiniMatchSummary = (props) => {
             case "br_rebirth_rbrthtrios": return "REBIRTH RESURGENCE TRIOS";
             case "br_rebirth_rbrthquad": return "REBIRTH RESURGENCE TRIOS";
             case "br_rebirth_resurgence_dous": return "VERDANSK RESURGENCE DOUS";
-            case "br_rebirth_resurgence_dous": return "VERDANSK RESURGENCE TRIOS";
-            case "br_rebirth_resurgence_dous": return "VERDANSK RESURGENCE QUADS";
+            case "br_rebirth_resurgence_trios": return "VERDANSK RESURGENCE TRIOS";
+            case "br_rebirth_resurgence_quads": return "VERDANSK RESURGENCE QUADS";
         }
     }
 
@@ -55,28 +55,50 @@ const MiniMatchSummary = (props) => {
         if (match) {
             console.log(match);
             let items = (
-                <Grid container justify="flex-start" alignItems="flex-start" direction="column" style={{ paddingLeft: "5px" }} >
-                    <Grid item xs={12}>
-                        {formatDate(match.utcStartSeconds)}
+                <Grid container justify="flex-start" alignItems="center" direction="row"  >
+                    <Grid container item xs={1} justify="flex-start"  >
+                        <Paper className={placementColor(match.teamStats.placement)} elevation={0}>
+                            <h2>{match.teamStats.placement ? match.teamStats.placement : "N/A"}</h2>
+                        </Paper>
                     </Grid>
-                    <Grid item xs={12}>
-                        {modeName(match.mode)}
-                    </Grid>
-                    <Grid container item direction="row" xs={12}>
-                        <Grid item xs={3}>
-                            <Paper className={placementColor(match.teamStats.placement)} elevation={3}>
-                                <Box fontWeight="bold">
-                                    <h2>{match.teamStats.placement ? match.teamStats.placement : "N/A"}</h2>
-                                </Box>
-                            </Paper>
+                    <Grid contaier item xs={11}>
+                        <Grid item xs={12}>
+                            <h3>{modeName(match.mode)}</h3>
                         </Grid>
-                        <Grid item xs={3}>
-                            KILLS <br />
-                            {match.playerStats.kills}
-                        </Grid>
-                        <Grid item xs={3}>
-                            DAMAGE <br />
-                            {match.playerStats.damageDone}
+                        <Grid item xs={12}>
+                            {formatDate(match.utcStartSeconds)}
+                        </Grid><br />
+                        <Grid container item direction="row" alignItems="center" xs={12}>
+                            <Grid container item xs={12} alignItems="flex-end">
+                                <Paper style={{ height: "60px", width: "-webkit-fill-available", opacity: "0.7", backgroundColor: "rgba(0,0,0,0.8)", color: "white" }}>
+                                    <Grid container item xs={12} justify="space-evenly" alignItems="center">
+                                        <Grid item xs={2}>
+                                            KILLS <br />
+                                            {match.playerStats.kills}
+                                        </Grid>
+                                        <Divider orientation="vertical" style={{ background: "white" }} flexItem />
+                                        <Grid item xs={2}>
+                                            DEATHS <br />
+                                            {match.playerStats.deaths}
+                                        </Grid>
+                                        <Divider orientation="vertical" style={{ background: "white", height: "60px" }} flexItem />
+                                        <Grid item xs={2}>
+                                            DAMAGE DONE <br />
+                                            {match.playerStats.damageDone}
+                                        </Grid>
+                                        <Divider orientation="vertical" style={{ background: "white" }} flexItem />
+                                        <Grid item xs={2}>
+                                            DAMAGE TAKEN <br />
+                                            {match.playerStats.damageTaken}
+                                        </Grid>
+                                        <Divider orientation="vertical" style={{ background: "white" }} flexItem />
+                                        <Grid item xs={2}>
+                                            KD <br />
+                                            {match.playerStats.kdRatio.toFixed(2)}
+                                        </Grid>
+                                    </Grid>
+                                </Paper>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -104,8 +126,8 @@ const MiniMatchSummary = (props) => {
             case "br_rebirth_rbrthtrios": return matchBgImage.rebirth;
             case "br_rebirth_rbrthquad": return matchBgImage.rebirth;
             case "br_rebirth_resurgence_dous": return matchBgImage.verdansk;
-            case "br_rebirth_resurgence_dous": return matchBgImage.verdansk;
-            case "br_rebirth_resurgence_dous": return matchBgImage.verdansk;
+            case "br_rebirth_resurgence_trios": return matchBgImage.verdansk;
+            case "br_rebirth_resurgence_quads": return matchBgImage.verdansk;
         }
     }
 

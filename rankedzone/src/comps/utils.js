@@ -269,7 +269,10 @@ const getMatches = async (username, platform) => {
                 utcStartSeconds
                 playerStats {
                 kills
+                deaths
                 damageDone
+                damageTaken
+                headshots
                 kdRatio
                 }
                 teamStats {
