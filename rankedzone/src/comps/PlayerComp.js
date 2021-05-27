@@ -17,7 +17,7 @@ const PlayerComp = (props) => {
             <Grid container direction="row" justify="flex-start" alignItems="flex-start" >
                 <Grid item xs={12}>
                     <h1>
-                        {utils.showSelectedValueIcon(platform)} {decodeURIComponent(username)}
+                        {utils.showSelectedValueIcon(platform)} {decodeURIComponent(username).toUpperCase()}
                     </h1>
                 </Grid>
                 <Grid item xs={12} md={3} className={stickyLifetime.root}>

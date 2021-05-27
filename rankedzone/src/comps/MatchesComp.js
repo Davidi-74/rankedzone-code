@@ -27,9 +27,9 @@ const MatchesComp = (props) => {
     }, [matches])
 
     return (
-        <Container>
+        <div>
             {items}
-        </Container>
+        </div>
     )
 }
 

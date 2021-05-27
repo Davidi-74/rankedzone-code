@@ -1,4 +1,4 @@
-import { Box, Button, ButtonBase, Container, Divider, Grid, Paper } from "@material-ui/core"
+import { Box, Button, ButtonBase, Container, Divider, Grid, Paper, useMediaQuery, useTheme } from "@material-ui/core"
 import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import placement from '../mui/placementPaper'
@@ -9,6 +9,8 @@ const MiniMatchSummary = (props) => {
     const [match, setMatch] = useState(null);
     const [items, setItems] = useState("");
     const history = useHistory();
+    const theme = useTheme();
+    const screenSize = useMediaQuery(theme.breakpoints.up('md'));
 
     useEffect(() => {
         setMatch(props.matchData)
@@ -26,6 +28,8 @@ const MiniMatchSummary = (props) => {
             case "br_rebirth_resurgence_dous": return "VERDANSK RESURGENCE DOUS";
             case "br_rebirth_resurgence_trios": return "VERDANSK RESURGENCE TRIOS";
             case "br_rebirth_resurgence_quads": return "VERDANSK RESURGENCE QUADS";
+            case "br_bodycount_pwergrb": return "POWER GRAB";
+            default: return mode;
         }
     }
 
@@ -51,57 +55,103 @@ const MiniMatchSummary = (props) => {
         return placementStyle.other
     }
 
+    const ordinalNumbers = (num) => {
+        let numString = String(num);
+        let lastNum = numString[numString.length - 1];
+        if (lastNum == 1) {
+            return num + "st"
+        }
+        if (lastNum == 2) {
+            return num + "nd"
+        }
+        if (lastNum == 3) {
+            return num + "rd"
+        }
+        return num + "th"
+    }
+
     useEffect(() => {
         if (match) {
             console.log(match);
             let items = (
-                <Grid container justify="flex-start" alignItems="center" direction="row"  >
-                    <Grid container item xs={1} justify="flex-start"  >
-                        <Paper className={placementColor(match.teamStats.placement)} elevation={0}>
-                            <h2>{match.teamStats.placement ? match.teamStats.placement : "N/A"}</h2>
-                        </Paper>
-                    </Grid>
-                    <Grid contaier item xs={11}>
-                        <Grid item xs={12}>
-                            <h3>{modeName(match.mode)}</h3>
+                <Paper xs={12} style={{ width: "-webkit-fill-available", margin: 0, backgroundColor: "rgba(0,0,0,0.3)", color: "white" }}>
+                    <Grid container justify="flex-start" alignItems="center" direction="row"  >
+                        <Grid container item xs={1} justify="flex-start"  >
+                            <Paper className={placementColor(match.teamStats.placement)} elevation={0}>
+                                <h2>{match.teamStats.placement ? ordinalNumbers(match.teamStats.placement) : "N/A"}</h2>
+                            </Paper>
                         </Grid>
-                        <Grid item xs={12}>
-                            {formatDate(match.utcStartSeconds)}
-                        </Grid><br />
-                        <Grid container item direction="row" alignItems="center" xs={12}>
-                            <Grid container item xs={12} alignItems="flex-end">
-                                <Paper style={{ height: "60px", width: "-webkit-fill-available", opacity: "0.7", backgroundColor: "rgba(0,0,0,0.8)", color: "white" }}>
-                                    <Grid container item xs={12} justify="space-evenly" alignItems="center">
-                                        <Grid item xs={2}>
-                                            KILLS <br />
-                                            {match.playerStats.kills}
+                        <Grid container item alignItems="center" justify="center" xs={11}>
+                            <Grid item xs={12}>
+                                {
+                                    screenSize ? <h2 style={{ marginBottom: "8px" }}>{modeName(match.mode)}</h2> : <h3 style={{ marginBottom: "8px" }}>{modeName(match.mode)}</h3>
+                                }
+                            </Grid>
+                            <Grid item xs={12}>
+                                {formatDate(match.utcStartSeconds)}<br /><br />
+                                <Divider style={{ background: "rgba(125,125,125,0.5)", width: "-webkit-fill-available", height: "1.5px" }} flexItem />
+                            </Grid>
+                            {
+                                screenSize ?
+                                    <Grid container item xs={12} justify="space-evenly" alignItems="flex-end">
+                                        <Grid item xs={2} style={{ paddingTop: "10px" }}>
+                                            <b>KILLS</b> <br />
+                                            <h2>{match.playerStats.kills}</h2>
                                         </Grid>
-                                        <Divider orientation="vertical" style={{ background: "white" }} flexItem />
-                                        <Grid item xs={2}>
-                                            DEATHS <br />
-                                            {match.playerStats.deaths}
+                                        <Divider orientation="vertical" style={{ background: "rgba(125,125,125,0.5)", width: "1.5px" }} flexItem />
+                                        <Grid item xs={2} >
+                                            <b>DEATHS</b> <br />
+                                            <h2>
+                                                {match.playerStats.deaths}
+                                            </h2>
                                         </Grid>
-                                        <Divider orientation="vertical" style={{ background: "white", height: "60px" }} flexItem />
-                                        <Grid item xs={2}>
-                                            DAMAGE DONE <br />
-                                            {match.playerStats.damageDone}
+                                        <Divider orientation="vertical" style={{ background: "rgba(125,125,125,0.5)", width: "1.5px", height: "90px" }} flexItem />
+                                        <Grid item xs={2} style={{ minWidth: "fit-content" }}>
+                                            <b>DAMAGE DONE</b> <br />
+                                            <h2>
+                                                {match.playerStats.damageDone}
+                                            </h2>
                                         </Grid>
-                                        <Divider orientation="vertical" style={{ background: "white" }} flexItem />
-                                        <Grid item xs={2}>
-                                            DAMAGE TAKEN <br />
-                                            {match.playerStats.damageTaken}
-                                        </Grid>
-                                        <Divider orientation="vertical" style={{ background: "white" }} flexItem />
-                                        <Grid item xs={2}>
-                                            KD <br />
-                                            {match.playerStats.kdRatio.toFixed(2)}
+                                        <Divider orientation="vertical" style={{ background: "rgba(125,125,125,0.5)", width: "1.5px" }} flexItem />
+                                        <Grid item xs={2} style={{ minWidth: "fit-content" }}>
+                                            <b>DAMAGE TAKEN</b> <br />
+                                            <h2>
+                                                {match.playerStats.damageTaken}
+                                            </h2>
                                         </Grid>
                                     </Grid>
-                                </Paper>
-                            </Grid>
+                                    :
+                                    <Grid container item xs={12} justify="space-evenly" alignItems="flex-end" direction="row">
+                                        <Grid item xs={5} style={{ paddingTop: "10px" }}>
+                                            <b>KILLS</b> <br />
+                                            <h2>{match.playerStats.kills}</h2>
+                                        </Grid>
+                                        <Divider orientation="vertical" style={{ background: "rgba(125,125,125,0.5)", width: "1.5px" }} flexItem />
+                                        <Grid item xs={5} >
+                                            <b>DEATHS</b> <br />
+                                            <h2>
+                                                {match.playerStats.deaths}
+                                            </h2>
+                                        </Grid>
+                                        <Divider style={{ background: "rgba(125,125,125,0.5)", width: "-webkit-fill-available", height: "1.5px" }} flexItem /><br />
+                                        <Grid item xs={5} style={{ minWidth: "fit-content" }}>
+                                            <b>DAMAGE DONE</b> <br />
+                                            <h2>
+                                                {match.playerStats.damageDone}
+                                            </h2>
+                                        </Grid>
+                                        <Divider orientation="vertical" style={{ background: "rgba(125,125,125,0.5)", width: "1.5px" }} flexItem />
+                                        <Grid item xs={5} style={{ minWidth: "fit-content" }}>
+                                            <b>DAMAGE TAKEN</b> <br />
+                                            <h2>
+                                                {match.playerStats.damageTaken}
+                                            </h2>
+                                        </Grid>
+                                    </Grid>
+                            }
                         </Grid>
                     </Grid>
-                </Grid>
+                </Paper>
             )
 
             setItems(items);
@@ -128,6 +178,8 @@ const MiniMatchSummary = (props) => {
             case "br_rebirth_resurgence_dous": return matchBgImage.verdansk;
             case "br_rebirth_resurgence_trios": return matchBgImage.verdansk;
             case "br_rebirth_resurgence_quads": return matchBgImage.verdansk;
+            case "br_bodycount_pwergrb": return matchBgImage.verdansk;
+            default: return matchBgImage.verdansk;
         }
     }
 
