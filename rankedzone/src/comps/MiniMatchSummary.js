@@ -70,6 +70,8 @@ const MiniMatchSummary = (props) => {
         return num + "th"
     }
 
+
+
     useEffect(() => {
         if (match) {
             console.log(match);
@@ -109,14 +111,14 @@ const MiniMatchSummary = (props) => {
                                         <Grid item xs={2} style={{ minWidth: "fit-content" }}>
                                             <b>DAMAGE DONE</b> <br />
                                             <h2>
-                                                {match.playerStats.damageDone}
+                                                {match.playerStats.damageDone.toLocaleString()}
                                             </h2>
                                         </Grid>
                                         <Divider orientation="vertical" style={{ background: "rgba(125,125,125,0.5)", width: "1.5px" }} flexItem />
                                         <Grid item xs={2} style={{ minWidth: "fit-content" }}>
                                             <b>DAMAGE TAKEN</b> <br />
                                             <h2>
-                                                {match.playerStats.damageTaken}
+                                                {match.playerStats.damageTaken.toLocaleString()}
                                             </h2>
                                         </Grid>
                                     </Grid>

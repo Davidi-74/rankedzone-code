@@ -1,5 +1,6 @@
 import { Box, Container, Grid, Paper } from "@material-ui/core"
 import { useEffect, useState } from "react"
+import SingleStatComp from "./SingleStatComp";
 import utils from './utils'
 
 const LifetimeComp = (props) => {
@@ -20,9 +21,9 @@ const LifetimeComp = (props) => {
         let h = Math.floor(seconds % (3600 * 24) / 3600);
         let m = Math.floor(seconds % 3600 / 60);
 
-        let dDisplay = d > 0 ? d + (d == 1 ? " Day, " : " Days, ") : "";
-        let hDisplay = h > 0 ? h + (h == 1 ? " Hour, " : " Hours, ") : "";
-        let mDisplay = m > 0 ? m + (m == 1 ? " Minute" : " Minutes") : "";
+        let dDisplay = d > 0 ? d + "D, " : "";
+        let hDisplay = h > 0 ? h + "H, " : "";
+        let mDisplay = m > 0 ? m + "M" : "";
         return dDisplay + hDisplay + mDisplay;
     }
 
@@ -34,9 +35,14 @@ const LifetimeComp = (props) => {
                 {stats != "" ?
                     <Grid container>
                         <Grid item xs={12}>
-                            <Paper>
-                                KD Ratio: {stats.lifetime.kdRatio.toFixed(2)} <br />
-                            </Paper>
+                            {/* <Paper>
+                                <Box style={{ background: "rgba(214, 175, 54)", color: "white", borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }}>K/D Ratio</Box>
+                                <Box fontSize="30px">
+                                    {stats.lifetime.kdRatio.toFixed(2)}
+                                </Box>
+                                <Box style={{ background: "rgba(214, 175, 54)", color: "white", fontSize: "14px", borderBottomRightRadius: "3px", borderBottomLeftRadius: "3px" }}>GOLD</Box>
+                            </Paper> */}
+                            <SingleStatComp statType="kd" stat={stats.lifetime.kdRatio} />
                         </Grid>
                         <Grid item xs={6}>
                             <Paper>
@@ -90,7 +96,8 @@ const LifetimeComp = (props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <Paper>
-                                Time Played: <br /> {secondsToDhms(stats.lifetime.timePlayed)} <br />
+                                Time Played <br />
+                                {secondsToDhms(stats.lifetime.timePlayed)}
                             </Paper>
                         </Grid>
                     </Grid> : ""}

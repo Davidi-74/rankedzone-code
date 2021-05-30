@@ -363,4 +363,35 @@ const showSelectedValueIcon = (value) => {
     }
 }
 
-export default { getProfile, searchProfile, getLifetimeStats, getWeeklyStats, getMatches, getMatchDetails, showSelectedValueIcon }
+
+const getRankingDesign = (statType, stat) => {
+    console.log({ statType, stat });
+    switch (statType) {
+        case "kd": {
+            if (stat < 0.53) {
+                return "bronze"
+            }
+            if (stat >= 0.53 && stat < 0.74) {
+                return "silver"
+            }
+            if (stat >= 0.74 && stat < 0.92) {
+                return "gold"
+            }
+            if (stat >= 0.92 && stat < 1.14) {
+                return "platinum"
+            }
+            if (stat >= 1.14 && stat < 2.08) {
+                return "diamond"
+            }
+            if (stat >= 2.08 && stat < 3.57) {
+                return "master"
+            }
+            if (stat >= 3.57) {
+                return "legend"
+            }
+        }
+    }
+
+}
+
+export default { getProfile, searchProfile, getLifetimeStats, getWeeklyStats, getMatches, getMatchDetails, showSelectedValueIcon, getRankingDesign }
