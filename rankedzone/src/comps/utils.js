@@ -369,27 +369,124 @@ const getRankingDesign = (statType, stat) => {
     switch (statType) {
         case "kd": {
             if (stat < 0.53) {
-                return "bronze"
+                return "wood"
             }
             if (stat >= 0.53 && stat < 0.74) {
-                return "silver"
+                return "bronze"
             }
             if (stat >= 0.74 && stat < 0.92) {
-                return "gold"
+                return "silver"
             }
             if (stat >= 0.92 && stat < 1.14) {
-                return "platinum"
+                return "gold"
             }
             if (stat >= 1.14 && stat < 2.08) {
-                return "diamond"
+                return "platinum"
             }
             if (stat >= 2.08 && stat < 3.57) {
-                return "master"
+                return "damascus"
             }
             if (stat >= 3.57) {
-                return "legend"
+                return "obsidian"
             }
         }
+
+        case "kills": {
+            if (stat < 100) {
+                return "wood"
+            }
+            if (stat >= 100 && stat < 450) {
+                return "bronze"
+            }
+            if (stat >= 450 && stat < 1024) {
+                return "silver"
+            }
+            if (stat >= 1024 && stat < 2075) {
+                return "gold"
+            }
+            if (stat >= 2075 && stat < 7616) {
+                return "platinum"
+            }
+            if (stat >= 7616 && stat < 12875) {
+                return "damascus"
+            }
+            if (stat >= 12875) {
+                return "obsidian"
+            }
+        }
+
+        case "wins": {
+            if (stat < 1) {
+                return "wood"
+            }
+            if (stat >= 1 && stat < 3) {
+                return "bronze"
+            }
+            if (stat >= 3 && stat < 8) {
+                return "silver"
+            }
+            if (stat >= 8 && stat < 19) {
+                return "gold"
+            }
+            if (stat >= 19 && stat < 105) {
+                return "platinum"
+            }
+            if (stat >= 105 && stat < 232) {
+                return "damascus"
+            }
+            if (stat >= 232) {
+                return "obsidian"
+            }
+        }
+
+        case "winPercentage": {
+            if (stat < 0.19) {
+                return "wood"
+            }
+            if (stat >= 0.19 && stat < 0.99) {
+                return "bronze"
+            }
+            if (stat >= 0.99 && stat < 1.89) {
+                return "silver"
+            }
+            if (stat >= 1.89 && stat < 3.13) {
+                return "gold"
+            }
+            if (stat >= 3.13 && stat < 9.72) {
+                return "platinum"
+            }
+            if (stat >= 9.72 && stat < 25) {
+                return "damascus"
+            }
+            if (stat >= 25) {
+                return "obsidian"
+            }
+        }
+
+        case "killsPerGame": {
+            if (stat < 1.42) {
+                return "wood"
+            }
+            if (stat >= 1.42 && stat < 1.96) {
+                return "bronze"
+            }
+            if (stat >= 1.96 && stat < 2.43) {
+                return "silver"
+            }
+            if (stat >= 2.43 && stat < 3.02) {
+                return "gold"
+            }
+            if (stat >= 3.02 && stat < 5.31) {
+                return "platinum"
+            }
+            if (stat >= 5.31 && stat < 8.93) {
+                return "damascus"
+            }
+            if (stat >= 8.93) {
+                return "obsidian"
+            }
+        }
+        default: return "default"
     }
 
 }

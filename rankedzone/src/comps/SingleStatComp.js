@@ -19,19 +19,19 @@ const SingleStatComp = (props) => {
             case "kd": return "K/D Ratio"
             case "kills": return "Kills"
             case "wins": return "Wins"
-            case "winPercentage": return "Win Percentage"
-            case "killsPerGame": return "Kills Per Game"
+            case "winPercentage": return "% Wins"
+            case "killsPerGame": return "Kills / Game"
         }
     }
 
     const rankingDesign = ranking();
     return (
         <Paper className={rankingDesign[design]}>
-            <Box style={{ color: "white", borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }}>{displayStat(statType)}</Box>
+            <Box style={{ color: "white", borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }} fontWeight="bolder">{displayStat(statType)}</Box>
             <Box fontSize="30px" style={{ background: "white" }}>
-                {stat.toFixed(2)}
+                {statType === "kd" || statType === "killsPerGame" || statType === "winPercentage" ? stat.toFixed(2) : stat.toLocaleString()}
             </Box>
-            <Box style={{ color: "white", fontSize: "14px", borderBottomRightRadius: "3px", borderBottomLeftRadius: "3px" }}>{design.toUpperCase()}</Box>
+            <Box style={{ color: "white", fontSize: "14px", borderBottomRightRadius: "3px", borderBottomLeftRadius: "3px" }} fontWeight="bolder">{design == "default" ? "" : design.toUpperCase()}</Box>
         </Paper>
     )
 }

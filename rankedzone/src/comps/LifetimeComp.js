@@ -1,10 +1,14 @@
-import { Box, Container, Grid, Paper } from "@material-ui/core"
+import { Box, Button, Container, Grid, Paper } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import SingleStatComp from "./SingleStatComp";
 import utils from './utils'
+import ExpandLessIcon from '@material-ui/icons/ExpandLess'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import PlainStatComp from "./PlainStatComp";
 
 const LifetimeComp = (props) => {
     const [stats, setStats] = useState("");
+    const [otherStats, setOtherStats] = useState(false);
 
     const getLifetimeStats = async () => {
         let temp = await utils.getLifetimeStats(decodeURIComponent(props.username), props.platform);
@@ -15,91 +19,64 @@ const LifetimeComp = (props) => {
         getLifetimeStats();
     }, [])
 
-    const secondsToDhms = (seconds) => {
-        seconds = Number(seconds);
-        let d = Math.floor(seconds / (3600 * 24));
-        let h = Math.floor(seconds % (3600 * 24) / 3600);
-        let m = Math.floor(seconds % 3600 / 60);
-
-        let dDisplay = d > 0 ? d + "D, " : "";
-        let hDisplay = h > 0 ? h + "H, " : "";
-        let mDisplay = m > 0 ? m + "M" : "";
-        return dDisplay + hDisplay + mDisplay;
-    }
-
     console.log(stats);
     return (
         <Box>
-            <h3>Lifetime Battle Royale Stats</h3>
+            <h3>Lifetime BR Stats</h3>
             <Box width="100%">
                 {stats != "" ?
                     <Grid container>
                         <Grid item xs={12}>
-                            {/* <Paper>
-                                <Box style={{ background: "rgba(214, 175, 54)", color: "white", borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }}>K/D Ratio</Box>
-                                <Box fontSize="30px">
-                                    {stats.lifetime.kdRatio.toFixed(2)}
-                                </Box>
-                                <Box style={{ background: "rgba(214, 175, 54)", color: "white", fontSize: "14px", borderBottomRightRadius: "3px", borderBottomLeftRadius: "3px" }}>GOLD</Box>
-                            </Paper> */}
                             <SingleStatComp statType="kd" stat={stats.lifetime.kdRatio} />
                         </Grid>
                         <Grid item xs={6}>
-                            <Paper>
-                                Kills: {stats.lifetime.kills} <br />
-                            </Paper>
+                            <SingleStatComp statType="kills" stat={stats.lifetime.kills} />
                         </Grid>
                         <Grid item xs={6}>
-                            <Paper>
-                                Deaths: {stats.lifetime.deaths} <br />
-                            </Paper>
+                            <SingleStatComp statType="killsPerGame" stat={stats.lifetime.kills / stats.lifetime.gamesPlayed} />
                         </Grid>
                         <Grid item xs={6}>
-                            <Paper>
-                                Matches: {stats.lifetime.gamesPlayed} <br />
-                            </Paper>
+                            <SingleStatComp statType="wins" stat={stats.lifetime.wins} />
                         </Grid>
                         <Grid item xs={6}>
-                            <Paper>
-                                Wins: {stats.lifetime.wins} <br />
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Paper>
-                                Top 5: {stats.lifetime.topFive} <br />
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Paper>
-                                Top 10: {stats.lifetime.topTen} <br />
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Paper>
-                                Downs: {stats.lifetime.downs} <br />
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Paper>
-                                Revives: {stats.lifetime.revives} <br />
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Paper>
-                                Contracts: {stats.lifetime.contracts} <br />
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Paper>
-                                Score: {stats.lifetime.score}
-                            </Paper>
+                            <SingleStatComp statType="winPercentage" stat={stats.lifetime.wins / stats.lifetime.gamesPlayed * 100} />
                         </Grid>
                         <Grid item xs={12}>
-                            <Paper>
-                                Time Played <br />
-                                {secondsToDhms(stats.lifetime.timePlayed)}
-                            </Paper>
+                            <Button style={{ width: "97%" }} onClick={() => { setOtherStats(!otherStats) }}>
+                                {otherStats ? <Box >Other Stats <ExpandLessIcon style={{ verticalAlign: "middle" }} /></Box> : <Box >Other Stats <ExpandMoreIcon style={{ verticalAlign: "middle" }} /></Box>}
+                            </Button>
                         </Grid>
+                        <Box visibility={otherStats ? "visible" : "collapse"}>
+                            <Grid container>
+                                <Grid item xs={6}>
+                                    <PlainStatComp statType="matches" stat={stats.lifetime.gamesPlayed} />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <PlainStatComp statType="deaths" stat={stats.lifetime.deaths} />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <PlainStatComp statType="topFive" stat={stats.lifetime.topFive} />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <PlainStatComp statType="topTen" stat={stats.lifetime.topTen} />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <PlainStatComp statType="downs" stat={stats.lifetime.downs} />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <PlainStatComp statType="revives" stat={stats.lifetime.revives} />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <PlainStatComp statType="contracts" stat={stats.lifetime.contracts} />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <PlainStatComp statType="score" stat={stats.lifetime.score} />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <PlainStatComp statType="timePlayed" stat={stats.lifetime.timePlayed} />
+                                </Grid>
+                            </Grid>
+                        </Box>
                     </Grid> : ""}
             </Box>
         </Box>
