@@ -10,7 +10,6 @@ const MatchesComp = (props) => {
 
     const getMatches = async () => {
         let data = await utils.getMatches(decodeURIComponent(props.username), props.platform);
-        console.log(data);
         setUserData({ uno: data.uno, username: data.username, clantag: data.clantag ? data.clantag : null });
         setMatches(data.matches);
     }
@@ -28,6 +27,7 @@ const MatchesComp = (props) => {
 
     return (
         <div>
+            <h3 style={{ color: "white" }}>Matches</h3>
             {items}
         </div>
     )

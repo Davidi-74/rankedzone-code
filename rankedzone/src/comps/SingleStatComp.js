@@ -8,22 +8,30 @@ const SingleStatComp = (props) => {
     const [stat, setStat] = useState(props.stat);
     const [design, setDesign] = useState("");
 
-    useEffect(() => {
+    const getDesign = () => {
         let design = utils.getRankingDesign(statType, stat);
-        console.log(design);
         setDesign(design);
-    }, [])
+    }
 
     const displayStat = (stat) => {
         switch (stat) {
             case "kd": return "K/D Ratio"
             case "kills": return "Kills"
+            case "weeklyKills": return "Kills"
             case "wins": return "Wins"
             case "winPercentage": return "% Wins"
             case "killsPerGame": return "Kills / Game"
         }
     }
 
+    useEffect(() => {
+        getDesign();
+    }, [])
+
+    useEffect(() => {
+        getDesign();
+    }, [stat])
+    console.log(stat);
     const rankingDesign = ranking();
     return (
         <Paper className={rankingDesign[design]}>

@@ -365,7 +365,6 @@ const showSelectedValueIcon = (value) => {
 
 
 const getRankingDesign = (statType, stat) => {
-    console.log({ statType, stat });
     switch (statType) {
         case "kd": {
             if (stat < 0.53) {
@@ -411,6 +410,30 @@ const getRankingDesign = (statType, stat) => {
                 return "damascus"
             }
             if (stat >= 12875) {
+                return "obsidian"
+            }
+        }
+
+        case "weeklyKills": {
+            if (stat < 100) {
+                return "wood"
+            }
+            if (stat >= 100 && stat < 250) {
+                return "bronze"
+            }
+            if (stat >= 250 && stat < 500) {
+                return "silver"
+            }
+            if (stat >= 500 && stat < 800) {
+                return "gold"
+            }
+            if (stat >= 800 && stat < 1000) {
+                return "platinum"
+            }
+            if (stat >= 1000 && stat < 1200) {
+                return "damascus"
+            }
+            if (stat >= 1200) {
                 return "obsidian"
             }
         }

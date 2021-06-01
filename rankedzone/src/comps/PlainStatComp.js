@@ -17,6 +17,11 @@ const PlainStatComp = (props) => {
             case "contracts": return "Contracts"
             case "score": return "Score"
             case "timePlayed": return "Time Played"
+            case "damageDone": return "Damage Done"
+            case "damageTaken": return "Damage Taken"
+            case "avgLifetime": return "Avg. Lifetime"
+            case "headshots": return "Headshots"
+            case "headshotPercentage": return "% Headshots"
         }
     }
 
@@ -32,12 +37,18 @@ const PlainStatComp = (props) => {
         return dDisplay + hDisplay + mDisplay;
     }
 
+    const formatHsPercentage = (hs) => {
+        let temp = hs * 100;
+        let hsString = String(temp);
+        return hsString[0] + hsString[1] + "%";
+    }
+
     const design = plainDesign();
     return (
         <Paper className={design.root} >
             <Box style={{ borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }} fontWeight="bolder">{displayStat(statType)}</Box>
             <Box fontSize="20px" style={{ background: "white", color: "#212121", borderBottomLeftRadius: "3px", borderBottomRightRadius: "3px" }}>
-                {statType == "timePlayed" ? secondsToDhms(stat) : stat.toLocaleString()}
+                {statType === "timePlayed" ? secondsToDhms(stat) : statType === "avgLifetime" ? secondsToDhms(stat) : statType === "headshotPercentage" ? formatHsPercentage(stat) : stat.toLocaleString()}
             </Box>
         </Paper>
     )

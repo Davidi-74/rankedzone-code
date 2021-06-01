@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, MenuItem, Select, TextField, Container, Grid, Box, makeStyles, useMediaQuery, useTheme } from '@material-ui/core'
+import { Button, MenuItem, Select, TextField, Container, Grid, Box, makeStyles, useMediaQuery, useTheme, Paper } from '@material-ui/core'
 import utils from './utils'
 import LifetimeComp from './LifetimeComp'
 import WeeklyComp from './WeeklyComp'
@@ -31,12 +31,14 @@ const PlayerComp = (props) => {
                     <LifetimeComp username={username} platform={platform} />
                 </Grid>
                 <Grid item xs={12} md={9} justify="center">
-                    <Grid xs={12}>
-                        <WeeklyComp username={username} platform={platform} />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <MatchesComp username={username} platform={platform} />
-                    </Grid>
+                    <Paper style={{ background: "rgba(41,41,41,1)" }}>
+                        <Grid xs={12}>
+                            <WeeklyComp username={username} platform={platform} />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <MatchesComp username={username} platform={platform} />
+                        </Grid>
+                    </Paper>
                 </Grid>
             </Grid>
         </Container>

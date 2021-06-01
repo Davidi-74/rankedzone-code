@@ -19,7 +19,6 @@ const LifetimeComp = (props) => {
         getLifetimeStats();
     }, [])
 
-    console.log(stats);
     return (
         <Box>
             <h3>Lifetime BR Stats</h3>
