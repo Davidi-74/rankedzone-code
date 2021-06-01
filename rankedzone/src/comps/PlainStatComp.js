@@ -34,9 +34,9 @@ const PlainStatComp = (props) => {
 
     const design = plainDesign();
     return (
-        <Paper className={design.root}>
-            <Box style={{ color: "white", borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }} fontWeight="bolder">{displayStat(statType)}</Box>
-            <Box fontSize="20px" style={{ background: "white", borderBottomLeftRadius: "3px", borderBottomRightRadius: "3px" }}>
+        <Paper className={design.root} >
+            <Box style={{ borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }} fontWeight="bolder">{displayStat(statType)}</Box>
+            <Box fontSize="20px" style={{ background: "white", color: "#212121", borderBottomLeftRadius: "3px", borderBottomRightRadius: "3px" }}>
                 {statType == "timePlayed" ? secondsToDhms(stat) : stat.toLocaleString()}
             </Box>
         </Paper>

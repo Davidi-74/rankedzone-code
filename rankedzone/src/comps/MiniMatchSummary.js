@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import placement from '../mui/placementPaper'
 import bgImage from '../mui/matchBgImage'
-
+import miniMatchSummary from '../mui/miniMatchSummary'
 
 const MiniMatchSummary = (props) => {
     const [match, setMatch] = useState(null);
@@ -71,12 +71,11 @@ const MiniMatchSummary = (props) => {
     }
 
 
-
+    const paperDesign = miniMatchSummary();
     useEffect(() => {
         if (match) {
-            console.log(match);
             let items = (
-                <Paper xs={12} style={{ width: "-webkit-fill-available", margin: 0, backgroundColor: "rgba(0,0,0,0.3)", color: "white" }}>
+                <Paper xs={12} className={paperDesign.root}>
                     <Grid container justify="flex-start" alignItems="center" direction="row"  >
                         <Grid container item xs={1} justify="flex-start"  >
                             <Paper className={placementColor(match.teamStats.placement)} elevation={0}>
@@ -142,7 +141,7 @@ const MiniMatchSummary = (props) => {
                                                 {match.playerStats.damageDone}
                                             </h2>
                                         </Grid>
-                                        <Divider orientation="vertical" style={{ background: "rgba(125,125,125,0.5)", width: "1.5px" }} flexItem />
+                                        <Divider orientation="vertical" style={{ background: "rgba(125,125,125,0.5)", width: "1.5px", marginTop: "-20px" }} flexItem />
                                         <Grid item xs={5} style={{ minWidth: "fit-content" }}>
                                             <b>DAMAGE TAKEN</b> <br />
                                             <h2>
@@ -158,7 +157,7 @@ const MiniMatchSummary = (props) => {
 
             setItems(items);
         }
-    }, [match])
+    }, [match, screenSize])
 
     const matchRef = () => {
         if (match) {

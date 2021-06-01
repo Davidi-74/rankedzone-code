@@ -6,7 +6,7 @@ const placement = makeStyles((theme) => ({
             height: "175px",
             lineHeight: "135px"
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('sm')]: {
             height: "250px",
             lineHeight: "210px",
             paddingLeft: "5px"
@@ -24,7 +24,7 @@ const placement = makeStyles((theme) => ({
             height: "175px",
             lineHeight: "135px"
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('sm')]: {
             height: "250px",
             lineHeight: "210px",
             paddingLeft: "5px"
@@ -41,7 +41,7 @@ const placement = makeStyles((theme) => ({
             height: "175px",
             lineHeight: "135px"
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('sm')]: {
             height: "250px",
             lineHeight: "210px",
             paddingLeft: "5px"
@@ -58,7 +58,7 @@ const placement = makeStyles((theme) => ({
             height: "175px",
             lineHeight: "135px"
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('sm')]: {
             height: "250px",
             lineHeight: "210px",
             paddingLeft: "5px"

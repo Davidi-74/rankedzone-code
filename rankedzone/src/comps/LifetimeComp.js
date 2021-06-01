@@ -42,11 +42,11 @@ const LifetimeComp = (props) => {
                             <SingleStatComp statType="winPercentage" stat={stats.lifetime.wins / stats.lifetime.gamesPlayed * 100} />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button style={{ width: "97%" }} onClick={() => { setOtherStats(!otherStats) }}>
+                            <Button style={{ width: "97%" }} onClick={() => { setOtherStats(!otherStats) }} variant="outlined">
                                 {otherStats ? <Box >Other Stats <ExpandLessIcon style={{ verticalAlign: "middle" }} /></Box> : <Box >Other Stats <ExpandMoreIcon style={{ verticalAlign: "middle" }} /></Box>}
                             </Button>
                         </Grid>
-                        <Box visibility={otherStats ? "visible" : "collapse"}>
+                        <Box display={otherStats ? "flex" : "none"} width="100%">
                             <Grid container>
                                 <Grid item xs={6}>
                                     <PlainStatComp statType="matches" stat={stats.lifetime.gamesPlayed} />
