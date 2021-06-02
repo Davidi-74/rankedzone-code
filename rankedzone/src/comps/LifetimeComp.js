@@ -20,8 +20,8 @@ const LifetimeComp = (props) => {
     }, [])
 
     return (
-        <Box>
-            <h3>Lifetime BR Stats</h3>
+        <Box style={{ paddingTop: "6px" }}>
+            <h3 style={{ paddingBottom: "9px" }}>Lifetime BR Stats</h3>
             <Box width="100%">
                 {stats != "" ?
                     <Grid container>
@@ -41,7 +41,7 @@ const LifetimeComp = (props) => {
                             <SingleStatComp statType="winPercentage" stat={stats.lifetime.wins / stats.lifetime.gamesPlayed * 100} />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button style={{ width: "97%" }} onClick={() => { setOtherStats(!otherStats) }} variant="outlined">
+                            <Button style={{ width: "97%", borderColor: "rgba(125,125,125,0.8)" }} onClick={() => { setOtherStats(!otherStats) }} variant="outlined">
                                 {otherStats ? <Box >Other Stats <ExpandLessIcon style={{ verticalAlign: "middle" }} /></Box> : <Box >Other Stats <ExpandMoreIcon style={{ verticalAlign: "middle" }} /></Box>}
                             </Button>
                         </Grid>

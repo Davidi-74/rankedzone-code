@@ -95,7 +95,7 @@ const WeeklyComp = (props) => {
                 }}
                     defaultValue="all"
                     variant="outlined"
-                    style={{ width: "175px", textAlign: "left", fontSize: "20px", fontWeight: "bold" }}
+                    style={{ width: "175px", height: "44px", textAlign: "left", fontSize: "20px", fontWeight: "bold" }}
                     onChange={(e) => setCurrentMode(e.target.value)}>
                     {selectList()}
                 </Select>
@@ -113,25 +113,25 @@ const WeeklyComp = (props) => {
                             <SingleStatComp key={stats.weekly[currentMode].killsPerGame} statType="killsPerGame" stat={stats.weekly[currentMode].killsPerGame} />
                         </Grid>
                         <Grid item xs={6} md={3}>
-                            <PlainStatComp key={stats.weekly[currentMode].timePlayed} statType={"timePlayed"} stat={stats.weekly[currentMode].timePlayed} />
-                        </Grid>
-                        <Grid item xs={6} md={3}>
-                            <PlainStatComp key={stats.weekly[currentMode].deaths} statType={"deaths"} stat={stats.weekly[currentMode].deaths} />
-                        </Grid>
-                        <Grid item xs={6} md={3}>
                             <PlainStatComp key={stats.weekly[currentMode].damageDone} statType={"damageDone"} stat={stats.weekly[currentMode].damageDone} />
                         </Grid>
                         <Grid item xs={6} md={3}>
                             <PlainStatComp key={stats.weekly[currentMode].damageTaken} statType={"damageTaken"} stat={stats.weekly[currentMode].damageTaken} />
                         </Grid>
                         <Grid item xs={6} md={3}>
-                            <PlainStatComp key={stats.weekly[currentMode].avgLifetime} statType={"avgLifetime"} stat={stats.weekly[currentMode].avgLifetime} />
+                            <PlainStatComp key={stats.weekly[currentMode].headshots} statType={"headshots"} stat={stats.weekly[currentMode].headshots} />
                         </Grid>
                         <Grid item xs={6} md={3}>
                             <PlainStatComp key={stats.weekly[currentMode].headshotPercentage} statType={"headshotPercentage"} stat={stats.weekly[currentMode].headshotPercentage} />
                         </Grid>
                         <Grid item xs={6} md={3}>
-                            <PlainStatComp key={stats.weekly[currentMode].headshots} statType={"headshots"} stat={stats.weekly[currentMode].headshots} />
+                            <PlainStatComp key={stats.weekly[currentMode].timePlayed} statType={"timePlayed"} stat={stats.weekly[currentMode].timePlayed} />
+                        </Grid>
+                        <Grid item xs={6} md={3}>
+                            <PlainStatComp key={stats.weekly[currentMode].avgLifetime} statType={"avgLifetime"} stat={stats.weekly[currentMode].avgLifetime} />
+                        </Grid>
+                        <Grid item xs={6} md={3}>
+                            <PlainStatComp key={stats.weekly[currentMode].deaths} statType={"deaths"} stat={stats.weekly[currentMode].deaths} />
                         </Grid>
                         <Grid item xs={6} md={3}>
                             <PlainStatComp key={stats.weekly[currentMode].score} statType={"score"} stat={stats.weekly[currentMode].score} />

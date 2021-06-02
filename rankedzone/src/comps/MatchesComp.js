@@ -27,7 +27,7 @@ const MatchesComp = (props) => {
 
     return (
         <div>
-            <h3 style={{ color: "white" }}>Matches</h3>
+            <h3 style={{ color: "white" }}>Last 20 Matches</h3>
             {items}
         </div>
     )

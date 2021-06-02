@@ -368,145 +368,145 @@ const getRankingDesign = (statType, stat) => {
     switch (statType) {
         case "kd": {
             if (stat < 0.53) {
-                return "wood"
+                return { design: "wood", nextLevel: ["bronze", 0.53] }
             }
             if (stat >= 0.53 && stat < 0.74) {
-                return "bronze"
+                return { design: "bronze", nextLevel: ["silver", 0.74] }
             }
             if (stat >= 0.74 && stat < 0.92) {
-                return "silver"
+                return { design: "silver", nextLevel: ["gold", 0.92] }
             }
             if (stat >= 0.92 && stat < 1.14) {
-                return "gold"
+                return { design: "gold", nextLevel: ["platinum", 1.14] }
             }
             if (stat >= 1.14 && stat < 2.08) {
-                return "platinum"
+                return { design: "platinum", nextLevel: ["damascus", 2.08] }
             }
             if (stat >= 2.08 && stat < 3.57) {
-                return "damascus"
+                return { design: "damascus", nextLevel: ["obsidian", 3.57] }
             }
             if (stat >= 3.57) {
-                return "obsidian"
+                return { design: "obsidian" }
             }
         }
 
         case "kills": {
             if (stat < 100) {
-                return "wood"
+                return { design: "wood", nextLevel: ["bronze", 100] }
             }
             if (stat >= 100 && stat < 450) {
-                return "bronze"
+                return { design: "bronze", nextLevel: ["silver", 450] }
             }
             if (stat >= 450 && stat < 1024) {
-                return "silver"
+                return { design: "silver", nextLevel: ["gold", 1024] }
             }
             if (stat >= 1024 && stat < 2075) {
-                return "gold"
+                return { design: "gold", nextLevel: ["platinum", 2075] }
             }
             if (stat >= 2075 && stat < 7616) {
-                return "platinum"
+                return { design: "platinum", nextLevel: ["damascus", 7616] }
             }
             if (stat >= 7616 && stat < 12875) {
-                return "damascus"
+                return { design: "damascus", nextLevel: ["obsidian", 12875] }
             }
             if (stat >= 12875) {
-                return "obsidian"
+                return { design: "obsidian" }
             }
         }
 
         case "weeklyKills": {
             if (stat < 100) {
-                return "wood"
+                return { design: "wood", nextLevel: ["bronze", 100] }
             }
             if (stat >= 100 && stat < 250) {
-                return "bronze"
+                return { design: "bronze", nextLevel: ["silver", 250] }
             }
             if (stat >= 250 && stat < 500) {
-                return "silver"
+                return { design: "silver", nextLevel: ["gold", 500] }
             }
             if (stat >= 500 && stat < 800) {
-                return "gold"
+                return { design: "gold", nextLevel: ["platinum", 800] }
             }
             if (stat >= 800 && stat < 1000) {
-                return "platinum"
+                return { design: "platinum", nextLevel: ["damascus", 1000] }
             }
             if (stat >= 1000 && stat < 1200) {
-                return "damascus"
+                return { design: "damascus", nextLevel: ["obsidian", 1200] }
             }
             if (stat >= 1200) {
-                return "obsidian"
+                return { design: "obsidian" }
             }
         }
 
         case "wins": {
             if (stat < 1) {
-                return "wood"
+                return { design: "wood", nextLevel: ["bronze", 1] }
             }
             if (stat >= 1 && stat < 3) {
-                return "bronze"
+                return { design: "bronze", nextLevel: ["silver", 3] }
             }
             if (stat >= 3 && stat < 8) {
-                return "silver"
+                return { design: "silver", nextLevel: ["gold", 8] }
             }
             if (stat >= 8 && stat < 19) {
-                return "gold"
+                return { design: "gold", nextLevel: ["platinum", 19] }
             }
             if (stat >= 19 && stat < 105) {
-                return "platinum"
+                return { design: "platinum", nextLevel: ["damascus", 105] }
             }
             if (stat >= 105 && stat < 232) {
-                return "damascus"
+                return { design: "damascus", nextLevel: ["obsidian", 232] }
             }
             if (stat >= 232) {
-                return "obsidian"
+                return { design: "obsidian" }
             }
         }
 
         case "winPercentage": {
             if (stat < 0.19) {
-                return "wood"
+                return { design: "wood", nextLevel: ["bronze", 0.19] }
             }
             if (stat >= 0.19 && stat < 0.99) {
-                return "bronze"
+                return { design: "bronze", nextLevel: ["silver", 0.99] }
             }
             if (stat >= 0.99 && stat < 1.89) {
-                return "silver"
+                return { design: "silver", nextLevel: ["gold", 1.89] }
             }
             if (stat >= 1.89 && stat < 3.13) {
-                return "gold"
+                return { design: "gold", nextLevel: ["platinum", 3.13] }
             }
             if (stat >= 3.13 && stat < 9.72) {
-                return "platinum"
+                return { design: "platinum", nextLevel: ["damascus", 9.72] }
             }
             if (stat >= 9.72 && stat < 25) {
-                return "damascus"
+                return { design: "damascus", nextLevel: ["obsidian", 25] }
             }
             if (stat >= 25) {
-                return "obsidian"
+                return { design: "obsidian" }
             }
         }
 
         case "killsPerGame": {
             if (stat < 1.42) {
-                return "wood"
+                return { design: "wood", nextLevel: ["bronze", 1.42] }
             }
             if (stat >= 1.42 && stat < 1.96) {
-                return "bronze"
+                return { design: "bronze", nextLevel: ["silver", 1.96] }
             }
             if (stat >= 1.96 && stat < 2.43) {
-                return "silver"
+                return { design: "silver", nextLevel: ["gold", 2.43] }
             }
             if (stat >= 2.43 && stat < 3.02) {
-                return "gold"
+                return { design: "gold", nextLevel: ["platinum", 3.02] }
             }
             if (stat >= 3.02 && stat < 5.31) {
-                return "platinum"
+                return { design: "platinum", nextLevel: ["damascus", 5.31] }
             }
             if (stat >= 5.31 && stat < 8.93) {
-                return "damascus"
+                return { design: "damascus", nextLevel: ["obsidian", 8.93] }
             }
             if (stat >= 8.93) {
-                return "obsidian"
+                return { design: "obsidian" }
             }
         }
         default: return "default"

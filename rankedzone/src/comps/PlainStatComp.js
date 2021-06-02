@@ -31,9 +31,10 @@ const PlainStatComp = (props) => {
         let h = Math.floor(seconds % (3600 * 24) / 3600);
         let m = Math.floor(seconds % 3600 / 60);
 
-        let dDisplay = d > 0 ? d + "D, " : "";
-        let hDisplay = h > 0 ? h + "H, " : "";
-        let mDisplay = m > 0 ? m + "M" : "";
+        let dDisplay, hDisplay, mDisplay = null;
+        dDisplay = d > 0 ? d + "D" : "";
+        hDisplay = h > 0 ? dDisplay ? ", " + h + "H" : h + "H" : "";
+        mDisplay = m > 0 ? dDisplay || hDisplay ? ", " + m + "M" : m + " Minutes" : "";
         return dDisplay + hDisplay + mDisplay;
     }
 

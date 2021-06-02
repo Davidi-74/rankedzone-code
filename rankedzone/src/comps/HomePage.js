@@ -51,7 +51,14 @@ const HomePage = (props) => {
                             <TextField type="text" label="Username" InputLabelProps={{ shrink: true }} placeholder='e.g "Davidi74#2560"' style={{ width: "225px" }} onChange={e => setUsername(e.target.value)} />
                         </Grid>
                         <Grid item xs={2} style={{ margin: 0, padding: 0, flexBasis: 0, paddingTop: "25px" }}>
-                            <Select value={platform} style={{ width: "65px", height: "47.5px", paddingBottom: "20%" }} MenuProps={{ classes: { paper: platformsStyle.root } }} renderValue={(value) => <ListItemIcon>{utils.showSelectedValueIcon(value)}</ListItemIcon>} onChange={e => setPlatform(e.target.value)} >
+                            <Select value={platform} style={{ width: "65px", height: "47.5px", paddingBottom: "20%" }} MenuProps={{
+                                classes: { paper: platformsStyle.root },
+                                anchorOrigin: { vertical: "bottom", horizontal: "left" },
+                                transformOrigin: { vertical: "top", horizontal: "left" },
+                                getContentAnchorEl: null,
+                            }}
+                                renderValue={(value) => <ListItemIcon>{utils.showSelectedValueIcon(value)}</ListItemIcon>}
+                                onChange={e => setPlatform(e.target.value)} >
                                 <MenuItem value="battle">
                                     <ListItemIcon >
                                         <BattleIcon />
