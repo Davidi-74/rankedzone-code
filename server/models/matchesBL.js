@@ -407,16 +407,16 @@ const formatMatchByID = async (data) => {
         playerCount: data[0].playerCount
     }
 
-    let usernamesAndUnos = data.map(player => {
-        let specificPlayer = player.player;
-        let obj = {
-            uno: specificPlayer.uno,
-            username: specificPlayer.username
-        }
-        return obj;
-    })
-    let playersWithKDs = await getMultipleKDs(usernamesAndUnos);
-    console.log(playersWithKDs);
+    // let usernamesAndUnos = data.map(player => {
+    //     let specificPlayer = player.player;
+    //     let obj = {
+    //         uno: specificPlayer.uno,
+    //         username: specificPlayer.username
+    //     }
+    //     return obj;
+    // })
+    // let playersWithKDs = await getMultipleKDs(usernamesAndUnos);
+    // console.log(playersWithKDs);
 
     let relevantData = data.map(player => {
         let playerStats = player.playerStats;
@@ -434,7 +434,7 @@ const formatMatchByID = async (data) => {
             teamPlacement: playerStats.teamPlacement,
             damageDone: playerStats.damageDone,
             damageTaken: playerStats.damageTaken,
-            lifetimeKDRatio: playersWithKDs[specificPlayer.uno].kdRatio
+            // lifetimeKDRatio: playersWithKDs[specificPlayer.uno].kdRatio
         };
         return relevantStats;
     })
