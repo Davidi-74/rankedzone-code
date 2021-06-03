@@ -30,7 +30,6 @@ const SingleStatComp = (props) => {
     }
 
     const formatNextLevel = (nextLevel) => {
-        console.log(nextLevel);
         const nextLevelName = nextLevel[0].toUpperCase();
         if (statType === "kd" || statType === "killsPerGame") {
             return nextLevel[1].toFixed(2) + " 🠖 " + nextLevelName;
@@ -48,7 +47,7 @@ const SingleStatComp = (props) => {
     useEffect(() => {
         getDesign();
     }, [stat])
-    console.log(stat);
+
     const rankingDesign = ranking();
     const tooltipDesign = nextRankTooltip();
     return (

@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import placement from '../mui/placementPaper'
 import bgImage from '../mui/matchBgImage'
 import miniMatchSummary from '../mui/miniMatchSummary'
+import utils from './utils'
 
 const MiniMatchSummary = (props) => {
     const [match, setMatch] = useState(null);
@@ -15,23 +16,6 @@ const MiniMatchSummary = (props) => {
     useEffect(() => {
         setMatch(props.matchData)
     }, [])
-
-    const modeName = (mode) => {
-        switch (mode) {
-            case "br_brsolo": return "BR SOLOS";
-            case "br_brduos": return "BR DOUS";
-            case "br_brtrios": return "BR TRIOS";
-            case "br_brquads": return "BR QUADS";
-            case "br_rebirth_rbrthduos": return "REBIRTH RESURGENCE DOUS";
-            case "br_rebirth_rbrthtrios": return "REBIRTH RESURGENCE TRIOS";
-            case "br_rebirth_rbrthquad": return "REBIRTH RESURGENCE TRIOS";
-            case "br_rebirth_resurgence_dous": return "VERDANSK RESURGENCE DOUS";
-            case "br_rebirth_resurgence_trios": return "VERDANSK RESURGENCE TRIOS";
-            case "br_rebirth_resurgence_quads": return "VERDANSK RESURGENCE QUADS";
-            case "br_bodycount_pwergrb": return "POWER GRAB";
-            default: return mode;
-        }
-    }
 
     const formatDate = (milis) => {
         let formatMilis = parseInt(milis + "000")
@@ -55,20 +39,7 @@ const MiniMatchSummary = (props) => {
         return placementStyle.other
     }
 
-    const ordinalNumbers = (num) => {
-        let numString = String(num);
-        let lastNum = numString[numString.length - 1];
-        if (lastNum == 1) {
-            return num + "st"
-        }
-        if (lastNum == 2) {
-            return num + "nd"
-        }
-        if (lastNum == 3) {
-            return num + "rd"
-        }
-        return num + "th"
-    }
+
 
 
     const paperDesign = miniMatchSummary();
@@ -79,13 +50,13 @@ const MiniMatchSummary = (props) => {
                     <Grid container justify="flex-start" alignItems="center" direction="row"  >
                         <Grid container item xs={1} justify="flex-start"  >
                             <Paper className={placementColor(match.teamStats.placement)} elevation={0}>
-                                <h2>{match.teamStats.placement ? ordinalNumbers(match.teamStats.placement) : "N/A"}</h2>
+                                <h2>{match.teamStats.placement ? utils.ordinalNumbers(match.teamStats.placement) : "N/A"}</h2>
                             </Paper>
                         </Grid>
                         <Grid container item alignItems="center" justify="center" xs={11}>
                             <Grid item xs={12}>
                                 {
-                                    screenSize ? <h2 style={{ marginBottom: "8px" }}>{modeName(match.mode)}</h2> : <h3 style={{ marginBottom: "8px" }}>{modeName(match.mode)}</h3>
+                                    screenSize ? <h2 style={{ marginBottom: "8px" }}>{utils.modeName(match.mode)}</h2> : <h3 style={{ marginBottom: "8px" }}>{utils.modeName(match.mode)}</h3>
                                 }
                             </Grid>
                             <Grid item xs={12}>

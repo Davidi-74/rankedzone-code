@@ -80,8 +80,6 @@ const WeeklyComp = (props) => {
         getOptionalModes();
     }, [stats])
 
-    console.log(stats);
-
     const selectDesign = homepagePlatforms();
     return (
         <div>

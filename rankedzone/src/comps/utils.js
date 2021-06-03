@@ -319,7 +319,7 @@ const getMatchDetails = async (matchID) => {
                 team
                 kills
                 deaths
-                matchKDRatio
+                kdRatio
                 totalXp
                 headshots
                 teamPlacement
@@ -514,4 +514,39 @@ const getRankingDesign = (statType, stat) => {
 
 }
 
-export default { getProfile, searchProfile, getLifetimeStats, getWeeklyStats, getMatches, getMatchDetails, showSelectedValueIcon, getRankingDesign }
+const modeName = (mode) => {
+    switch (mode) {
+        case "br_brsolo": return "BR SOLOS";
+        case "br_brduos": return "BR DOUS";
+        case "br_brtrios": return "BR TRIOS";
+        case "br_brquads": return "BR QUADS";
+        case "br_rebirth_rbrthduos": return "REBIRTH RESURGENCE DOUS";
+        case "br_rebirth_rbrthtrios": return "REBIRTH RESURGENCE TRIOS";
+        case "br_rebirth_rbrthquad": return "REBIRTH RESURGENCE TRIOS";
+        case "br_rebirth_resurgence_dous": return "VERDANSK RESURGENCE DOUS";
+        case "br_rebirth_resurgence_trios": return "VERDANSK RESURGENCE TRIOS";
+        case "br_rebirth_resurgence_quads": return "VERDANSK RESURGENCE QUADS";
+        case "br_bodycount_pwergrb": return "POWER GRAB";
+        default: return mode;
+    }
+}
+
+const ordinalNumbers = (num) => {
+    let numString = String(num);
+    let lastNum = numString[numString.length - 1];
+    if (numString == 11 || numString == 12 || numString == 13 || numString == 111 || numString == 112 || numString == 113) {
+        return num + "th"
+    }
+    if (lastNum == 1) {
+        return num + "st"
+    }
+    if (lastNum == 2) {
+        return num + "nd"
+    }
+    if (lastNum == 3) {
+        return num + "rd"
+    }
+    return num + "th"
+}
+
+export default { getProfile, searchProfile, getLifetimeStats, getWeeklyStats, getMatches, getMatchDetails, showSelectedValueIcon, getRankingDesign, modeName, ordinalNumbers }
