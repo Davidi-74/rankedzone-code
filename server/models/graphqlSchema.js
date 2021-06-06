@@ -116,13 +116,26 @@ const schema = buildSchema(`
         lifetimeKDRatio: Float
     }
 
+    type extendedTeamStatsType {
+        kills: Float!
+        deaths: Float!
+        damageDone: Float!
+        damageTaken: Float!
+        headshots: Float!
+    }
+
+    type sortedTeamStatsType {
+        teamStats: extendedTeamStatsType
+        players: [playerStats]
+    }
+
     type matchByIDType {
         utcStartSeconds: Int!
         utcEndSeconds: Int!
         mode: String!
         matchID: String!
         playerCount: Int!
-        teams: [[playerStats]]
+        teams: [sortedTeamStatsType]
     }
 
     type hashUsername {

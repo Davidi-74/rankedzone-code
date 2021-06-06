@@ -397,6 +397,17 @@ const getMultipleKDs = async (playersList) => {
     return players;
 }
 
+const sumTeamStats = (team) => {
+    let teamStats = { kills: 0, deaths: 0, damageDone: 0, damageTaken: 0, headshots: 0 };
+    team.forEach(player => {
+        teamStats.kills += player.kills;
+        teamStats.deaths += player.deaths;
+        teamStats.damageDone += player.damageDone;
+        teamStats.damageTaken += player.damageTaken;
+        teamStats.headshots += player.headshots;
+    });
+    return teamStats;
+}
 
 const formatMatchByID = async (data) => {
     let obj = {
@@ -440,7 +451,16 @@ const formatMatchByID = async (data) => {
     })
 
     let teams = sortByTeam(relevantData)
-    obj.teams = teams;
+    let teamsCopy = [];
+    teams.forEach((team) => {
+        let teamStats = sumTeamStats(team);
+        let obj = {
+            players: team,
+            teamStats: teamStats
+        }
+        teamsCopy.push(obj);
+    })
+    obj.teams = teamsCopy;
     return obj;
 }
 
