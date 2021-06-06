@@ -1,13 +1,17 @@
 import { Paper, Grid, TableContainer, TableHead, TableRow, TableBody, Table } from "@material-ui/core"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import placement from '../mui/tablePlacementPaper'
 import StyledTableCell from '../mui/styledTableCell'
 import StyledTableRow from '../mui/styledTableRow'
 import utils from './utils'
+import teamCompDesign from '../mui/teamCompDesign'
 
 const TeamComp = (props) => {
     const [team, setTeam] = useState(props.team);
     const [teamPlacement, setTeamPlacement] = useState(props.placement);
+    const [teamStats, setTeamStats] = useState(props.teamStats);
+    const [uno, setUno] = useState(props.uno);
+    const [specificTeam, setSpecificTeam] = useState("general");
 
     const placementStyle = placement();
     const placementColor = (placement) => {
@@ -23,17 +27,34 @@ const TeamComp = (props) => {
         return placementStyle.other
     }
 
+    const isSpecificPlayer = () => {
+        let unoExists = false;
+        team.forEach(player => {
+            if (player.uno === uno) {
+                unoExists = true;
+            }
+        })
+        if (unoExists) {
+            setSpecificTeam("specific")
+        }
+    }
+
+    useEffect(() => {
+        isSpecificPlayer();
+    }, [])
+
+    const teamPaper = teamCompDesign();
     return (
-        <Paper style={{ background: "#707070", color: "white" }}>
+        <Paper className={teamPaper[specificTeam]} elevation={10}>
             {
                 team.length > 0 ?
                     <Grid container direction="row" justify="flex-start" alignItems="stretch">
-                        <Grid item xs={1}>
+                        <Grid item xs={2} sm={1}>
                             <Paper className={placementColor(teamPlacement + 1)} elevation={0}>
                                 {utils.ordinalNumbers(teamPlacement + 1)}
                             </Paper>
                         </Grid>
-                        <Grid container item xs={11} direction="column" justify="center" alignItems="flex-start">
+                        <Grid container item xs={10} sm={11} direction="column" justify="center" alignItems="flex-start">
                             <TableContainer >
                                 <Table style={{ minWidth: 650 }} aria-label="a dense table">
                                     <TableHead>
@@ -58,10 +79,23 @@ const TeamComp = (props) => {
                                                 <StyledTableCell align="center">{player.damageDone.toLocaleString()}</StyledTableCell>
                                                 <StyledTableCell align="center">{player.damageTaken.toLocaleString()}</StyledTableCell>
                                                 <StyledTableCell align="center">{player.headshots}</StyledTableCell>
-                                                <StyledTableCell align="center" style={{ borderBottomRightRadius: "3px" }}>{player.kills != 0 ? (player.headshots / player.kills * 100).toFixed(2) + "%" : "0.00%"}</StyledTableCell>
+                                                <StyledTableCell align="center">{player.kills != 0 ? (player.headshots / player.kills * 100).toFixed(2) + "%" : "0.00%"}</StyledTableCell>
                                             </StyledTableRow>
                                         })}
                                     </TableBody>
+                                    <TableHead>
+                                        <StyledTableRow>
+                                            <StyledTableCell component="th" scope="row" >
+                                                TEAM SUMMARY
+                                            </StyledTableCell>
+                                            <StyledTableCell align="center">{teamStats.kills}</StyledTableCell>
+                                            <StyledTableCell align="center">{teamStats.deaths}</StyledTableCell>
+                                            <StyledTableCell align="center">{teamStats.damageDone.toLocaleString()}</StyledTableCell>
+                                            <StyledTableCell align="center">{teamStats.damageTaken.toLocaleString()}</StyledTableCell>
+                                            <StyledTableCell align="center">{teamStats.headshots}</StyledTableCell>
+                                            <StyledTableCell align="center" style={{ borderBottomRightRadius: "3px" }}>{teamStats.kills != 0 ? (teamStats.headshots / teamStats.kills * 100).toFixed(2) + "%" : "0.00%"}</StyledTableCell>
+                                        </StyledTableRow>
+                                    </TableHead>
                                 </Table>
                             </TableContainer>
                         </Grid>

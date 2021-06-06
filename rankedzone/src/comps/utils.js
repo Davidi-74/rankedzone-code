@@ -313,7 +313,8 @@ const getMatchDetails = async (matchID) => {
             mode
             playerCount
             teams {
-                uno
+                players {
+                    uno
                 username
                 clantag
                 team
@@ -325,6 +326,14 @@ const getMatchDetails = async (matchID) => {
                 teamPlacement
                 damageDone
                 damageTaken
+                }
+                teamStats {
+                    kills
+                    deaths
+                    damageDone
+                    damageTaken
+                    headshots
+                }
             }
         }
     }
@@ -522,7 +531,7 @@ const modeName = (mode) => {
         case "br_brquads": return "BR QUADS";
         case "br_rebirth_rbrthduos": return "REBIRTH RESURGENCE DOUS";
         case "br_rebirth_rbrthtrios": return "REBIRTH RESURGENCE TRIOS";
-        case "br_rebirth_rbrthquad": return "REBIRTH RESURGENCE TRIOS";
+        case "br_rebirth_rbrthquad": return "REBIRTH RESURGENCE QUADS";
         case "br_rebirth_resurgence_dous": return "VERDANSK RESURGENCE DOUS";
         case "br_rebirth_resurgence_trios": return "VERDANSK RESURGENCE TRIOS";
         case "br_rebirth_resurgence_quads": return "VERDANSK RESURGENCE QUADS";
@@ -549,4 +558,12 @@ const ordinalNumbers = (num) => {
     return num + "th"
 }
 
-export default { getProfile, searchProfile, getLifetimeStats, getWeeklyStats, getMatches, getMatchDetails, showSelectedValueIcon, getRankingDesign, modeName, ordinalNumbers }
+const formatDate = (milis) => {
+    let formatMilis = parseInt(milis + "000")
+    let matchStart = new Date(formatMilis);
+    let time = matchStart.toTimeString().substring(0, 5);
+    let date = matchStart.toDateString();
+    return String(date.substring(0, 3) + ", " + date.substring(4, 10) + " | " + time);
+}
+
+export default { getProfile, searchProfile, getLifetimeStats, getWeeklyStats, getMatches, getMatchDetails, showSelectedValueIcon, getRankingDesign, modeName, ordinalNumbers, formatDate }

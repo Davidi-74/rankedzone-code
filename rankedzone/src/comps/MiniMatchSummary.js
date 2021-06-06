@@ -17,14 +17,6 @@ const MiniMatchSummary = (props) => {
         setMatch(props.matchData)
     }, [])
 
-    const formatDate = (milis) => {
-        let formatMilis = parseInt(milis + "000")
-        let matchStart = new Date(formatMilis);
-        let time = matchStart.toTimeString().substring(0, 5);
-        let date = matchStart.toDateString();
-        return String(date.substring(0, 3) + ", " + date.substring(4, 10) + " | " + time);
-    }
-
     const placementStyle = placement();
     const placementColor = (placement) => {
         if (placement === 1) {
@@ -60,7 +52,7 @@ const MiniMatchSummary = (props) => {
                                 }
                             </Grid>
                             <Grid item xs={12}>
-                                {formatDate(match.utcStartSeconds)}<br /><br />
+                                {utils.formatDate(match.utcStartSeconds)}<br /><br />
                                 <Divider style={{ background: "rgba(125,125,125,0.5)", width: "-webkit-fill-available", height: "1.5px" }} flexItem />
                             </Grid>
                             {
