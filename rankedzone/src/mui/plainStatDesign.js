@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 const plainDesign = makeStyles({
     root: {
-        background: "linear-gradient(130deg, #66b2b1 0%, #66b2b1 11%, #66b2b1 40%, #93fffe 100%)",
+        background: "linear-gradient(130deg, #29b6f6 0%, #29b6f6 11%, #29b6f6 40%, #53c4f7 100%)",
         color: "white"
     }
 })

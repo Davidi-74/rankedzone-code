@@ -12,6 +12,7 @@ const TeamComp = (props) => {
     const [teamStats, setTeamStats] = useState(props.teamStats);
     const [uno, setUno] = useState(props.uno);
     const [specificTeam, setSpecificTeam] = useState("general");
+    const [mode, setMode] = useState(props.mode);
 
     const placementStyle = placement();
     const placementColor = (placement) => {
@@ -64,7 +65,6 @@ const TeamComp = (props) => {
                                             <StyledTableCell align="center">DEATHS</StyledTableCell>
                                             <StyledTableCell align="center">DAMAGE DONE</StyledTableCell>
                                             <StyledTableCell align="center">DAMAGE TAKEN</StyledTableCell>
-                                            <StyledTableCell align="center">HEADSHOTS</StyledTableCell>
                                             <StyledTableCell align="center" style={{ borderTopRightRadius: "3px" }}>% HEADSHOTS</StyledTableCell>
                                         </StyledTableRow>
                                     </TableHead>
@@ -78,24 +78,24 @@ const TeamComp = (props) => {
                                                 <StyledTableCell align="center">{player.deaths}</StyledTableCell>
                                                 <StyledTableCell align="center">{player.damageDone.toLocaleString()}</StyledTableCell>
                                                 <StyledTableCell align="center">{player.damageTaken.toLocaleString()}</StyledTableCell>
-                                                <StyledTableCell align="center">{player.headshots}</StyledTableCell>
                                                 <StyledTableCell align="center">{player.kills != 0 ? (player.headshots / player.kills * 100).toFixed(2) + "%" : "0.00%"}</StyledTableCell>
                                             </StyledTableRow>
                                         })}
                                     </TableBody>
-                                    <TableHead>
-                                        <StyledTableRow>
-                                            <StyledTableCell component="th" scope="row" >
-                                                TEAM SUMMARY
+                                    {mode != "br_brsolo" ?
+                                        <TableHead>
+                                            <StyledTableRow>
+                                                <StyledTableCell component="th" scope="row" >
+                                                    TEAM SUMMARY
                                             </StyledTableCell>
-                                            <StyledTableCell align="center">{teamStats.kills}</StyledTableCell>
-                                            <StyledTableCell align="center">{teamStats.deaths}</StyledTableCell>
-                                            <StyledTableCell align="center">{teamStats.damageDone.toLocaleString()}</StyledTableCell>
-                                            <StyledTableCell align="center">{teamStats.damageTaken.toLocaleString()}</StyledTableCell>
-                                            <StyledTableCell align="center">{teamStats.headshots}</StyledTableCell>
-                                            <StyledTableCell align="center" style={{ borderBottomRightRadius: "3px" }}>{teamStats.kills != 0 ? (teamStats.headshots / teamStats.kills * 100).toFixed(2) + "%" : "0.00%"}</StyledTableCell>
-                                        </StyledTableRow>
-                                    </TableHead>
+                                                <StyledTableCell align="center">{teamStats.kills}</StyledTableCell>
+                                                <StyledTableCell align="center">{teamStats.deaths}</StyledTableCell>
+                                                <StyledTableCell align="center">{teamStats.damageDone.toLocaleString()}</StyledTableCell>
+                                                <StyledTableCell align="center">{teamStats.damageTaken.toLocaleString()}</StyledTableCell>
+                                                <StyledTableCell align="center" style={{ borderBottomRightRadius: "3px" }}>{teamStats.kills != 0 ? (teamStats.headshots / teamStats.kills * 100).toFixed(2) + "%" : "0.00%"}</StyledTableCell>
+                                            </StyledTableRow>
+                                        </TableHead>
+                                        : ""}
                                 </Table>
                             </TableContainer>
                         </Grid>

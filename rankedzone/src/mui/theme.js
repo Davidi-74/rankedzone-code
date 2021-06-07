@@ -16,7 +16,10 @@ const darkTheme = createMuiTheme({
         },
         MuiButton: {
             root: {
-                color: "#f7fbfc"
+                color: "#f7fbfc",
+                '&.MuiButton-outlined': {
+                    borderColor: "rgba(125,125,125,0.8)"
+                }
             }
         },
         MuiInputLabel: {
@@ -55,7 +58,7 @@ const darkTheme = createMuiTheme({
             maxWidth: false
         },
         MuiButton: {
-            variant: "contained"
+            variant: "outlined"
         },
         MuiTextField: {
             variant: "filled",
@@ -63,7 +66,8 @@ const darkTheme = createMuiTheme({
         },
         MuiSelect: {
             variant: "filled"
-        }
+        },
+
     },
     palette: {
         primary: {
