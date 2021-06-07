@@ -460,6 +460,9 @@ const formatMatchByID = async (data) => {
         }
         teamsCopy.push(obj);
     })
+    // if (obj.mode === "br_brsolo") {
+    //     teamsCopy.pop();
+    // }
     obj.teams = teamsCopy;
     return obj;
 }
