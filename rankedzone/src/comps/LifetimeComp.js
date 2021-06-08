@@ -1,14 +1,18 @@
-import { Box, Button, Container, Grid, Paper } from "@material-ui/core"
+import { Box, Button, Container, Grid, Paper, Tooltip } from "@material-ui/core"
 import { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom";
 import SingleStatComp from "./SingleStatComp";
 import utils from './utils'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import PlainStatComp from "./PlainStatComp";
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import helpOutlineDesign from '../mui/helpOutlineDesign'
 
 const LifetimeComp = (props) => {
     const [stats, setStats] = useState("");
     const [otherStats, setOtherStats] = useState(false);
+    const history = useHistory();
 
     const getLifetimeStats = async () => {
         let temp = await utils.getLifetimeStats(decodeURIComponent(props.username), props.platform);
@@ -19,9 +23,15 @@ const LifetimeComp = (props) => {
         getLifetimeStats();
     }, [])
 
+    const helpDesign = helpOutlineDesign();
     return (
         <Box style={{ paddingTop: "6px" }}>
-            <h3 style={{ paddingBottom: "9px" }}>Lifetime BR Stats</h3>
+            <h3 style={{ paddingBottom: "9px" }}>
+                Lifetime BR Stats&nbsp;
+                 <Tooltip title="HOW WE RANK" classes={{ tooltip: helpDesign.tooltip }}>
+                    <HelpOutlineIcon fontSize="small" className={helpDesign.root} onClick={() => history.push('/ranking')} />
+                </Tooltip>
+            </h3>
             <Box width="100%">
                 {stats != "" ?
                     <Grid container>

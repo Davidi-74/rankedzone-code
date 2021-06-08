@@ -65,12 +65,12 @@ const TeamComp = (props) => {
                                             <StyledTableCell align="center">DEATHS</StyledTableCell>
                                             <StyledTableCell align="center">DAMAGE DONE</StyledTableCell>
                                             <StyledTableCell align="center">DAMAGE TAKEN</StyledTableCell>
-                                            <StyledTableCell align="center" style={{ borderTopRightRadius: "3px" }}>% HEADSHOTS</StyledTableCell>
+                                            <StyledTableCell align="center" style={{ borderTopRightRadius: "4px" }}>% HEADSHOTS</StyledTableCell>
                                         </StyledTableRow>
                                     </TableHead>
                                     <TableBody>
                                         {team.map((player) => {
-                                            return <StyledTableRow key={player.username} style={{ borderBottomRightRadius: "3px" }}>
+                                            return <StyledTableRow key={player.username} style={{ borderBottomRightRadius: "4px" }}>
                                                 <StyledTableCell component="th" scope="row" >
                                                     {player.clantag ? "[" + player.clantag + "] " + player.username : player.username}
                                                 </StyledTableCell>
@@ -92,7 +92,7 @@ const TeamComp = (props) => {
                                                 <StyledTableCell align="center">{teamStats.deaths}</StyledTableCell>
                                                 <StyledTableCell align="center">{teamStats.damageDone.toLocaleString()}</StyledTableCell>
                                                 <StyledTableCell align="center">{teamStats.damageTaken.toLocaleString()}</StyledTableCell>
-                                                <StyledTableCell align="center" style={{ borderBottomRightRadius: "3px" }}>{teamStats.kills != 0 ? (teamStats.headshots / teamStats.kills * 100).toFixed(2) + "%" : "0.00%"}</StyledTableCell>
+                                                <StyledTableCell align="center" style={{ borderBottomRightRadius: "4px" }}>{teamStats.kills != 0 ? (teamStats.headshots / teamStats.kills * 100).toFixed(2) + "%" : "0.00%"}</StyledTableCell>
                                             </StyledTableRow>
                                         </TableHead>
                                         : ""}

@@ -49,7 +49,7 @@ const darkTheme = createMuiTheme({
             root: {
                 backgroundColor: "white",
                 margin: "4px",
-                borderRadius: "5px"
+                borderRadius: "4px"
             }
         }
     },
