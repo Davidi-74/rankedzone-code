@@ -42,20 +42,9 @@ const MatchesComp = (props) => {
         getMatches();
     }, [])
 
-    // useEffect(() => {
-    //     splitToSessions();
-    // }, [matches])
     return (
         <div>
             <h3 style={{ color: "white" }}>Last 20 Matches</h3>
-            {/* {
-                matches.length > 0 ?
-                    matches.map(match => {
-                        return <MiniMatchSummary key={match.matchID} uno={userData.uno} matchData={match} />
-                    })
-                    :
-                    ""
-            } */}
             {
                 matches.length > 0 ?
                     matches.map((session, index) => {
