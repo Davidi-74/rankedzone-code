@@ -1,8 +1,9 @@
-import { Container, Grid } from "@material-ui/core"
+import { ButtonGroup, Container, Grid, Button, useMediaQuery, useTheme } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import MatchMVPs from "./MatchMVPs";
 import TeamComp from "./TeamComp";
 import utils from './utils'
+import sortButtons from '../mui/sortButtons'
 
 const SpecificMatchComp = (props) => {
     const [matchID, setMatchID] = useState(props.match.params.matchID);
@@ -11,7 +12,9 @@ const SpecificMatchComp = (props) => {
     const [matchData, setMatchData] = useState("");
     const [topTeamKills, setTopTeamKills] = useState(null);
     const [topPlayerKills, setTopPlayerKills] = useState(null);
-    console.log(123);
+    const [sort, setSort] = useState(["picked", "", ""])
+    const theme = useTheme();
+    const screenSize = useMediaQuery(theme.breakpoints.up('md'));
 
     const getMatch = async () => {
         let resp = await utils.getMatchDetails(matchID);
@@ -55,42 +58,76 @@ const SpecificMatchComp = (props) => {
         }
     }
 
-    useEffect(() => {
-        let teamKills = getTopTeamKills(teams);
-        let playerKills = getTopPlayerKills(teams);
-        setTopTeamKills(teamKills)
-        setTopPlayerKills(playerKills)
-
-    }, [teams])
+    const sortBy = (prop) => {
+        let teamsCopy = [...teams];
+        teamsCopy.sort((a, b) => {
+            if (prop === "teamPlacement") {
+                return a.players[0][prop] - b.players[0][prop];
+            }
+            else {
+                if (b.teamStats.kills === a.teamStats.kills) {
+                    return b.teamStats.damageDone - a.teamStats.damageDone
+                }
+                return b.teamStats[prop] - a.teamStats[prop];
+            }
+        })
+        setTeams(teamsCopy)
+    }
 
     useEffect(() => {
         getMatch();
     }, [matchID])
 
+    useEffect(() => {
+        let teamKills = getTopTeamKills(teams);
+        let playerKills = getTopPlayerKills(teams);
+        setTopTeamKills(teamKills)
+        setTopPlayerKills(playerKills)
+    }, [teams])
+
+    console.log("RENDER");
+    const sortButtonsDesign = sortButtons();
     return (
         <Container>
-            <Grid container direction="column" alignItems="stretch" jusity="center">
-                <Grid item xs={12}>
-                    <h2 style={{ marginBottom: "0" }}>{utils.modeName(matchData.mode)}</h2>
-                </Grid>
-                <Grid item xs={12}>
-                    <h5>{utils.formatDate(matchData.utcStartSeconds)}</h5>
-                </Grid>
-                <Grid item xs={12} >
-                    {topTeamKills != null ? <MatchMVPs teamKills={topTeamKills} mode={matchData.mode} uno={uno} playerKills={topPlayerKills} key={topTeamKills[0].players[0].team} /> : ""}
-                </Grid>
-                <Grid item xs={12}>
-                    {
-                        teams.length > 0 ?
-                            teams.map((team, index) => {
-                                if (team.players.length != 0) {
-                                    return <TeamComp key={team.players[0].team} mode={matchData.mode} team={team.players} teamStats={team.teamStats} placement={index} uno={uno} />
-                                }
-                            })
-                            : ""
-                    }
-                </Grid>
-            </Grid>
+            {
+                teams.length > 0 ?
+                    <Grid container direction="column" alignItems="stretch" jusity="center">
+                        <Grid item xs={12}>
+                            {
+                                screenSize ?
+                                    <h2 style={{ marginBottom: "0" }}>{utils.modeName(matchData.mode)}</h2>
+                                    : <h4 style={{ marginBottom: "0" }}>{utils.modeName(matchData.mode)}</h4>
+                            }
+                        </Grid>
+                        <Grid item xs={12}>
+                            <h5>{utils.formatDate(matchData.utcStartSeconds)}</h5>
+                        </Grid>
+                        <Grid item xs={12} >
+                            {topTeamKills != null ? <MatchMVPs teamKills={topTeamKills} mode={matchData.mode} uno={uno} playerKills={topPlayerKills} key={topTeamKills[0].players[0].team} /> : ""}
+                        </Grid>
+                        <Grid item xs={12}>
+                            <div style={{ marginBottom: "5px" }}>
+                                <h5 style={{ marginTop: "5px", marginBottom: "10px", color: "#909090" }}>SORT BY</h5>
+                                <ButtonGroup size="small">
+                                    <Button className={sortButtonsDesign[sort[0]]} style={{ width: "93px" }} onClick={() => { sortBy("teamPlacement"); setSort(["picked", "", ""]) }}>Placement</Button>
+                                    <Button className={sortButtonsDesign[sort[1]]} style={{ width: "93px" }} onClick={() => { sortBy("kills"); setSort(["", "picked", ""]) }}>Kills</Button>
+                                    <Button className={sortButtonsDesign[sort[2]]} style={{ width: "93px" }} onClick={() => { sortBy("damageDone"); setSort(["", "", "picked"]) }}>Damage</Button>
+                                </ButtonGroup>
+                            </div>
+                        </Grid>
+                        <Grid item xs={12}>
+                            {
+                                teams.map((team, index) => {
+                                    if (team.players.length != 0) {
+                                        return <TeamComp key={team.players[0].team} mode={matchData.mode} team={team.players} teamStats={team.teamStats} uno={uno} />
+                                    }
+                                })
+                            }
+                        </Grid>
+                    </Grid>
+                    :
+                    ""
+            }
         </Container>
     )
 }

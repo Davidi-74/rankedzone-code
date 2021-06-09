@@ -48,7 +48,9 @@ const MiniMatchSummary = (props) => {
                         <Grid container item alignItems="center" justify="center" xs={11}>
                             <Grid item xs={12}>
                                 {
-                                    screenSize ? <h2 style={{ marginBottom: "8px" }}>{utils.modeName(match.mode)}</h2> : <h3 style={{ marginBottom: "8px" }}>{utils.modeName(match.mode)}</h3>
+                                    screenSize ?
+                                        <h2 style={{ marginBottom: "8px" }}>{utils.modeName(match.mode)}</h2>
+                                        : <h3 style={{ marginBottom: "8px" }}>{utils.modeName(match.mode)}</h3>
                                 }
                             </Grid>
                             <Grid item xs={12}>

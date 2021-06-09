@@ -36,8 +36,6 @@ const MatchMVPs = (props) => {
         }
     }
 
-    console.log(teamKills);
-
     const placementDesign = placement();
     return (
         <Paper style={{ background: "#353535", marginBottom: "10px" }}>

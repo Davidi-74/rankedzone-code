@@ -8,7 +8,6 @@ import teamCompDesign from '../mui/teamCompDesign'
 
 const TeamComp = (props) => {
     const [team, setTeam] = useState(props.team);
-    const [teamPlacement, setTeamPlacement] = useState(props.placement);
     const [teamStats, setTeamStats] = useState(props.teamStats);
     const [uno, setUno] = useState(props.uno);
     const [specificTeam, setSpecificTeam] = useState("general");
@@ -51,8 +50,8 @@ const TeamComp = (props) => {
                 team.length > 0 ?
                     <Grid container direction="row" justify="flex-start" alignItems="stretch">
                         <Grid item xs={2} sm={1}>
-                            <Paper className={placementColor(teamPlacement + 1)} elevation={0}>
-                                {utils.ordinalNumbers(teamPlacement + 1)}
+                            <Paper className={placementColor(team[0].teamPlacement)} elevation={0}>
+                                {utils.ordinalNumbers(team[0].teamPlacement)}
                             </Paper>
                         </Grid>
                         <Grid container item xs={10} sm={11} direction="column" justify="center" alignItems="flex-start">

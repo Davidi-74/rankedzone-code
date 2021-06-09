@@ -66,7 +66,7 @@ const WeeklyComp = (props) => {
     const selectList = () => {
         if (optionalModes) {
             let modes = optionalModes.map((mode) => {
-                return <MenuItem value={mode}>{formatModeName(mode)}</MenuItem>
+                return <MenuItem key={mode} value={mode}>{formatModeName(mode)}</MenuItem>
             })
             return modes
         }

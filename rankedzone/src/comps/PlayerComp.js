@@ -30,9 +30,9 @@ const PlayerComp = (props) => {
                 <Grid item xs={12} md={3} className={stickyLifetime.root}>
                     <LifetimeComp username={username} platform={platform} />
                 </Grid>
-                <Grid item xs={12} md={9} justify="center">
+                <Grid container item xs={12} md={9} justify="center">
                     <Paper style={{ background: "rgba(41,41,41,1)" }}>
-                        <Grid xs={12}>
+                        <Grid item xs={12}>
                             <WeeklyComp username={username} platform={platform} />
                         </Grid>
                         <Grid item xs={12}>
