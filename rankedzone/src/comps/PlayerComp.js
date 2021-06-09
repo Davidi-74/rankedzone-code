@@ -31,14 +31,12 @@ const PlayerComp = (props) => {
                     <LifetimeComp username={username} platform={platform} />
                 </Grid>
                 <Grid container item xs={12} md={9} justify="center">
-                    <Paper style={{ background: "rgba(41,41,41,1)" }}>
-                        <Grid item xs={12}>
-                            <WeeklyComp username={username} platform={platform} />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <MatchesComp username={username} platform={platform} />
-                        </Grid>
-                    </Paper>
+                    <Grid item xs={12}>
+                        <WeeklyComp username={username} platform={platform} />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <MatchesComp username={username} platform={platform} />
+                    </Grid>
                 </Grid>
             </Grid>
         </Container>

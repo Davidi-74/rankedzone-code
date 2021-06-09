@@ -85,7 +85,6 @@ const SpecificMatchComp = (props) => {
         setTopPlayerKills(playerKills)
     }, [teams])
 
-    console.log("RENDER");
     const sortButtonsDesign = sortButtons();
     return (
         <Container>
