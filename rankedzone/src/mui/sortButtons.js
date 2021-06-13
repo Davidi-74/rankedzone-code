@@ -5,7 +5,11 @@ const sortButtons = makeStyles({
         background: "#707070",
         "&:hover": {
             background: "#656565"
-        }
+        },
+        width: "12vh"
+    },
+    root: {
+        width: "12vh"
     }
 })
 

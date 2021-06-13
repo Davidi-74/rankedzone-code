@@ -1,9 +1,11 @@
-import { ButtonGroup, Container, Grid, Button, useMediaQuery, useTheme } from "@material-ui/core"
+import { ButtonGroup, Container, Grid, Button, useMediaQuery, useTheme, Divider, TableContainer } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import MatchMVPs from "./MatchMVPs";
 import TeamComp from "./TeamComp";
 import utils from './utils'
 import sortButtons from '../mui/sortButtons'
+import StyledTableRow from "../mui/styledTableRow";
+import GroupedByPlayers from "./GroupedByPlayers";
 
 const SpecificMatchComp = (props) => {
     const [matchID, setMatchID] = useState(props.match.params.matchID);
@@ -12,9 +14,14 @@ const SpecificMatchComp = (props) => {
     const [matchData, setMatchData] = useState("");
     const [topTeamKills, setTopTeamKills] = useState(null);
     const [topPlayerKills, setTopPlayerKills] = useState(null);
-    const [sort, setSort] = useState(["picked", "", ""])
+    const [sort, setSort] = useState(["picked", "root", "root"])
     const theme = useTheme();
     const screenSize = useMediaQuery(theme.breakpoints.up('md'));
+    const [groupBy, setGroupBy] = useState("teams");
+    const [group, setGroup] = useState(["picked", "root"])
+    const [groupSort, setGroupSort] = useState(["picked", "root"])
+    const [teamComps, setTeamComps] = useState([]);
+    const [players, setPlayers] = useState([]);
 
     const getMatch = async () => {
         let resp = await utils.getMatchDetails(matchID);
@@ -74,11 +81,48 @@ const SpecificMatchComp = (props) => {
         setTeams(teamsCopy)
     }
 
+    const createTeamsDesign = () => {
+        const teamComps = teams.map((team, index) => {
+            if (team.players.length != 0) {
+                return <TeamComp key={team.players[0].team} mode={matchData.mode} team={team.players} teamStats={team.teamStats} uno={uno} />
+            }
+        })
+        setTeamComps(teamComps);
+    }
+
+    const getPlayers = () => {
+        let players = [];
+        teams.forEach(team => players.push(...team.players));
+        players = sortPlayersByKills(players)
+        setPlayers(players);
+    }
+
+    const sortPlayersByKills = (players) => {
+        const temp = players.sort((a, b) => {
+            if (b.kills === a.kills) {
+                return b.damageDone - a.damageDone;
+            }
+            return b.kills - a.kills
+        })
+        return temp;
+    }
+
+    const sortPlayersByDamage = (players) => {
+        const temp = players.sort((a, b) => {
+            if (b.damageDone === a.damageDone) {
+                return b.kills - a.kills;
+            }
+            return b.damageDone - a.damageDone
+        })
+        return temp
+    }
+
     useEffect(() => {
         getMatch();
     }, [matchID])
 
     useEffect(() => {
+        createTeamsDesign();
         let teamKills = getTopTeamKills(teams);
         let playerKills = getTopPlayerKills(teams);
         setTopTeamKills(teamKills)
@@ -104,23 +148,58 @@ const SpecificMatchComp = (props) => {
                         <Grid item xs={12} >
                             {topTeamKills != null ? <MatchMVPs teamKills={topTeamKills} mode={matchData.mode} uno={uno} playerKills={topPlayerKills} key={topTeamKills[0].players[0].team} /> : ""}
                         </Grid>
-                        <Grid item xs={12}>
-                            <div style={{ marginBottom: "5px" }}>
-                                <h5 style={{ marginTop: "5px", marginBottom: "10px", color: "#909090" }}>SORT BY</h5>
-                                <ButtonGroup size="small">
-                                    <Button className={sortButtonsDesign[sort[0]]} style={{ width: "93px" }} onClick={() => { sortBy("teamPlacement"); setSort(["picked", "", ""]) }}>Placement</Button>
-                                    <Button className={sortButtonsDesign[sort[1]]} style={{ width: "93px" }} onClick={() => { sortBy("kills"); setSort(["", "picked", ""]) }}>Kills</Button>
-                                    <Button className={sortButtonsDesign[sort[2]]} style={{ width: "93px" }} onClick={() => { sortBy("damageDone"); setSort(["", "", "picked"]) }}>Damage</Button>
-                                </ButtonGroup>
-                            </div>
+                        <Grid container item xs={12} justify="center">
+                            <Grid container item xs={12} md={2} justify="center">
+                                <div style={{ marginBottom: "5px" }}>
+                                    <h5 style={{ marginTop: "5px", marginBottom: "10px", color: "#909090" }}>GROUP BY</h5>
+                                    <ButtonGroup size="small">
+                                        <Button className={sortButtonsDesign[group[0]]} onClick={() => { setGroupBy("teams"); setGroup(["picked", "root"]) }}>TEAMS</Button>
+                                        <Button className={sortButtonsDesign[group[1]]} onClick={() => { if (players.length === 0) { getPlayers() }; setGroupBy("players"); setGroup(["root", "picked"]) }}>PLAYERS</Button>
+                                    </ButtonGroup>
+                                </div>
+                            </Grid>
+                            <Grid container item xs={1} justify="center" alignItems="center">
+                                <Divider orientation="vertical" style={{ background: "#909090" }} />
+                            </Grid>
+                            <Grid container item xs={12} md={2} justify="center">
+                                <div style={{ marginBottom: "5px" }}>
+                                    <h5 style={{ marginTop: "5px", marginBottom: "10px", color: "#909090" }}>SORT BY</h5>
+                                    {
+                                        groupBy === ("teams") ?
+                                            <ButtonGroup size="small">
+                                                <Button className={sortButtonsDesign[sort[0]]} onClick={() => { sortBy("teamPlacement"); setSort(["picked", "root", "root"]) }}>Placement</Button>
+                                                <Button className={sortButtonsDesign[sort[1]]} onClick={() => { sortBy("kills"); setSort(["root", "picked", "root"]) }}>Kills</Button>
+                                                <Button className={sortButtonsDesign[sort[2]]} onClick={() => { sortBy("damageDone"); setSort(["root", "root", "picked"]) }}>Damage</Button>
+                                            </ButtonGroup>
+                                            :
+                                            <ButtonGroup size="small">
+                                                <Button className={sortButtonsDesign[groupSort[0]]}
+                                                    onClick={() => {
+                                                        let sorted = sortPlayersByKills(players)
+                                                        setPlayers(sorted)
+                                                        setGroupSort(["picked", "root"])
+                                                    }}>
+                                                    KILLS
+                                                </Button>
+                                                <Button className={sortButtonsDesign[groupSort[1]]}
+                                                    onClick={() => {
+                                                        let sorted = sortPlayersByDamage(players);
+                                                        setPlayers(sorted)
+                                                        setGroupSort(["root", "picked"])
+                                                    }}>
+                                                    DAMAGE
+                                                </Button>
+                                            </ButtonGroup>
+                                    }
+                                </div>
+                            </Grid>
                         </Grid>
                         <Grid item xs={12}>
                             {
-                                teams.map((team, index) => {
-                                    if (team.players.length != 0) {
-                                        return <TeamComp key={team.players[0].team} mode={matchData.mode} team={team.players} teamStats={team.teamStats} uno={uno} />
-                                    }
-                                })
+                                groupBy === "teams" ?
+                                    teamComps
+                                    :
+                                    <GroupedByPlayers key={players[0].username} players={players} uno={uno} />
                             }
                         </Grid>
                     </Grid>

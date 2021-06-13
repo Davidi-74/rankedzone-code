@@ -6,7 +6,7 @@ import SingleStatComp from "./SingleStatComp";
 const SessionSummary = (props) => {
     const [session, setSession] = useState(props.session);
     const [sessionStats, setSessionStats] = useState(null)
-    console.log(session);
+
     const summarizeSession = () => {
         let [deaths, killsPerGame, wins] = [0, 0, 0];
         session.forEach(match => {
@@ -33,7 +33,7 @@ const SessionSummary = (props) => {
                     <Grid container direction="row" justify="center" alignItems="center">
                         <Grid item xs={12}>
                             <h4 style={{ color: "white" }}>
-                                SESSION SUMMARY - {session.length} MATCHES IN A ROW
+                                SESSION SUMMARY | {session.length} MATCHES IN A ROW
                             </h4>
                         </Grid>
                         <Grid item xs={12} md={4}>

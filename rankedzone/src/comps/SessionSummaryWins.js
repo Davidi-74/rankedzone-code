@@ -5,7 +5,7 @@ import sessionSummaryWins from "../mui/sessionSummaryWin";
 
 const SessionSummaryWins = (props) => {
     const [wins, setWins] = useState(props.wins);
-    console.log(wins);
+
     const winDesign = sessionSummaryWins();
     return (
         <Paper className={wins > 0 ? winDesign.win : winDesign.noWin}>
