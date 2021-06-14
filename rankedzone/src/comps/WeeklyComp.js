@@ -4,6 +4,7 @@ import SingleStatComp from "./SingleStatComp";
 import utils from './utils'
 import { homepagePlatforms } from '../mui/homepagePlatforms'
 import PlainStatComp from "./PlainStatComp";
+import WeeklyCompSkel from "./skeletons/WeeklyCompSkel";
 
 const WeeklyComp = (props) => {
     const [stats, setStats] = useState("");
@@ -85,7 +86,7 @@ const WeeklyComp = (props) => {
         <div>
             <h3 style={{ color: "white" }}>
                 Weekly Battle Royale Stats for&nbsp;
-                    <Select MenuProps={{
+                <Select MenuProps={{
                     classes: { paper: selectDesign.root },
                     anchorOrigin: { vertical: "bottom", horizontal: "left" },
                     transformOrigin: { vertical: "top", horizontal: "left" },
@@ -99,7 +100,7 @@ const WeeklyComp = (props) => {
                 </Select>
             </h3>
             {
-                stats != "" ?
+                stats !== "" ?
                     <Grid container direction="row">
                         <Grid item xs={12} md={4}>
                             <SingleStatComp key={stats.weekly[currentMode].kdRatio} statType="kd" stat={stats.weekly[currentMode].kdRatio} />
@@ -135,7 +136,8 @@ const WeeklyComp = (props) => {
                             <PlainStatComp key={stats.weekly[currentMode].score} statType={"score"} stat={stats.weekly[currentMode].score} />
                         </Grid>
                     </Grid>
-                    : ""
+                    :
+                    <WeeklyCompSkel />
             }
         </div >
     )

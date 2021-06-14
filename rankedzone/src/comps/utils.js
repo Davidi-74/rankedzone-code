@@ -525,7 +525,7 @@ const getRankingDesign = (statType, stat) => {
 
 const modeName = (mode) => {
     switch (mode) {
-        case "br_brsolo": return "BR SOLOS";
+        case "br_brsolo": return "BR SOLO";
         case "br_brduos": return "BR DOUS";
         case "br_brtrios": return "BR TRIOS";
         case "br_brquads": return "BR QUADS";

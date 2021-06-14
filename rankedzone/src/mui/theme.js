@@ -51,6 +51,11 @@ const darkTheme = createMuiTheme({
                 margin: "4px",
                 borderRadius: "4px"
             }
+        },
+        MuiSkeleton: {
+            root: {
+                borderRadius: "4px"
+            }
         }
     },
     props: {
@@ -67,7 +72,9 @@ const darkTheme = createMuiTheme({
         MuiSelect: {
             variant: "filled"
         },
-
+        MuiSkeleton: {
+            animation: "wave"
+        }
     },
     palette: {
         primary: {

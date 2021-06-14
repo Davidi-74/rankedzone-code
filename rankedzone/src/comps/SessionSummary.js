@@ -2,6 +2,7 @@ import { Grid } from "@material-ui/core";
 import { useEffect, useState } from "react"
 import SessionSummaryWins from "./SessionSummaryWins";
 import SingleStatComp from "./SingleStatComp";
+import SessionSummarySkel from "./skeletons/SessionSummarySkel";
 
 const SessionSummary = (props) => {
     const [session, setSession] = useState(props.session);
@@ -29,7 +30,7 @@ const SessionSummary = (props) => {
     return (
         <div>
             {
-                sessionStats ?
+                sessionStats !== null ?
                     <Grid container direction="row" justify="center" alignItems="center">
                         <Grid item xs={12}>
                             <h4 style={{ color: "white" }}>
@@ -47,7 +48,8 @@ const SessionSummary = (props) => {
                         </Grid>
 
                     </Grid>
-                    : ""
+                    :
+                    <SessionSummarySkel />
             }
         </div>
     )

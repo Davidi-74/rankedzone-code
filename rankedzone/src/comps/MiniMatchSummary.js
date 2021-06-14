@@ -39,7 +39,7 @@ const MiniMatchSummary = (props) => {
         if (match) {
             let items = (
                 <Paper xs={12} className={paperDesign.root}>
-                    <Grid container justify="flex-start" alignItems="center" direction="row"  >
+                    <Grid container justify="flex-start" alignItems="stretch" direction="row"  >
                         <Grid container item xs={1} justify="flex-start"  >
                             <Paper className={placementColor(match.teamStats.placement)} elevation={0}>
                                 <h2>{match.teamStats.placement ? utils.ordinalNumbers(match.teamStats.placement) : "N/A"}</h2>
@@ -153,8 +153,8 @@ const MiniMatchSummary = (props) => {
         <div>
             {
                 match != null ?
-                    <ButtonBase style={{ width: "-webkit-fill-available" }}>
-                        <Paper onClick={matchRef} className={pickBgImage(match.mode)}>
+                    <ButtonBase style={{ width: "-webkit-fill-available" }} component={Link} to={`/match/${match.matchID}/${props.uno}`}>
+                        <Paper className={pickBgImage(match.mode)}>
                             {items}
                         </Paper>
                     </ButtonBase>

@@ -149,18 +149,28 @@ const SpecificMatchComp = (props) => {
                             {topTeamKills != null ? <MatchMVPs teamKills={topTeamKills} mode={matchData.mode} uno={uno} playerKills={topPlayerKills} key={topTeamKills[0].players[0].team} /> : ""}
                         </Grid>
                         <Grid container item xs={12} justify="center">
-                            <Grid container item xs={12} md={2} justify="center">
-                                <div style={{ marginBottom: "5px" }}>
-                                    <h5 style={{ marginTop: "5px", marginBottom: "10px", color: "#909090" }}>GROUP BY</h5>
-                                    <ButtonGroup size="small">
-                                        <Button className={sortButtonsDesign[group[0]]} onClick={() => { setGroupBy("teams"); setGroup(["picked", "root"]) }}>TEAMS</Button>
-                                        <Button className={sortButtonsDesign[group[1]]} onClick={() => { if (players.length === 0) { getPlayers() }; setGroupBy("players"); setGroup(["root", "picked"]) }}>PLAYERS</Button>
-                                    </ButtonGroup>
-                                </div>
-                            </Grid>
-                            <Grid container item xs={1} justify="center" alignItems="center">
-                                <Divider orientation="vertical" style={{ background: "#909090" }} />
-                            </Grid>
+                            {
+                                matchData.mode != "br_brsolo" ?
+                                    <Grid container item xs={12} md={2} justify="center">
+                                        <div style={{ marginBottom: "5px" }}>
+                                            <h5 style={{ marginTop: "5px", marginBottom: "10px", color: "#909090" }}>GROUP BY</h5>
+                                            <ButtonGroup size="small">
+                                                <Button className={sortButtonsDesign[group[0]]} onClick={() => { setGroupBy("teams"); setGroup(["picked", "root"]) }}>TEAMS</Button>
+                                                <Button className={sortButtonsDesign[group[1]]} onClick={() => { if (players.length === 0) { getPlayers() }; setGroupBy("players"); setGroup(["root", "picked"]) }}>PLAYERS</Button>
+                                            </ButtonGroup>
+                                        </div>
+                                    </Grid>
+                                    :
+                                    null
+                            }
+                            {
+                                matchData.mode != "br_brsolo" ?
+                                    <Grid container item xs={1} justify="center" alignItems="center">
+                                        <Divider orientation="vertical" style={{ background: "#909090" }} />
+                                    </Grid>
+                                    :
+                                    null
+                            }
                             <Grid container item xs={12} md={2} justify="center">
                                 <div style={{ marginBottom: "5px" }}>
                                     <h5 style={{ marginTop: "5px", marginBottom: "10px", color: "#909090" }}>SORT BY</h5>
@@ -195,6 +205,7 @@ const SpecificMatchComp = (props) => {
                             </Grid>
                         </Grid>
                         <Grid item xs={12}>
+                            <br />
                             {
                                 groupBy === "teams" ?
                                     teamComps

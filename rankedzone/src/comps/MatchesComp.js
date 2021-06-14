@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import utils from './utils'
 import MiniMatchSummary from './MiniMatchSummary'
 import SessionSummary from "./SessionSummary"
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const MatchesComp = (props) => {
     const [matches, setMatches] = useState([]);
@@ -46,7 +47,7 @@ const MatchesComp = (props) => {
         <div>
             <h3 style={{ color: "white" }}>Last 20 Matches</h3>
             {
-                matches.length > 0 ?
+                matches.length !== 0 ?
                     matches.map((session, index) => {
                         let matches = session.map((match) => {
                             return <MiniMatchSummary key={match.matchID} uno={userData.uno} matchData={match} />
@@ -65,7 +66,10 @@ const MatchesComp = (props) => {
                             </Paper>
                         )
                     })
-                    : ""
+                    :
+                    <Grid container alignItems="center" justify="center">
+                        <Skeleton variant="rect" height={1000} width="98%" />
+                    </Grid>
             }
         </div>
     )

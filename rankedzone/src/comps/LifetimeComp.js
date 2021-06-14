@@ -1,6 +1,6 @@
-import { Box, Button, Container, Grid, Paper, Tooltip } from "@material-ui/core"
+import { Box, Button, Grid, Tooltip, ButtonBase } from "@material-ui/core"
 import { useEffect, useState } from "react"
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SingleStatComp from "./SingleStatComp";
 import utils from './utils'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
@@ -8,11 +8,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import PlainStatComp from "./PlainStatComp";
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import helpOutlineDesign from '../mui/helpOutlineDesign'
+import LifetimeCompSkel from './skeletons/LifetimeCompSkel'
 
 const LifetimeComp = (props) => {
     const [stats, setStats] = useState("");
     const [otherStats, setOtherStats] = useState(false);
-    const history = useHistory();
 
     const getLifetimeStats = async () => {
         let temp = await utils.getLifetimeStats(decodeURIComponent(props.username), props.platform);
@@ -28,13 +28,15 @@ const LifetimeComp = (props) => {
         <Box style={{ paddingTop: "6px" }}>
             <h3 style={{ paddingBottom: "9px" }}>
                 Lifetime BR Stats&nbsp;
-                 <Tooltip title="HOW WE RANK" classes={{ tooltip: helpDesign.tooltip }}>
-                    <HelpOutlineIcon fontSize="small" className={helpDesign.root} onClick={() => history.push('/ranking')} />
+                <Tooltip title="HOW WE RANK" classes={{ tooltip: helpDesign.tooltip }}>
+                    <ButtonBase component={Link} to="/ranking">
+                        <HelpOutlineIcon fontSize="small" className={helpDesign.root} />
+                    </ButtonBase>
                 </Tooltip>
             </h3>
             <Box width="100%">
                 {stats != "" ?
-                    <Grid container>
+                    <Grid container direction="row" justify="center" alignItems="stretch">
                         <Grid item xs={12}>
                             <SingleStatComp statType="kd" stat={stats.lifetime.kdRatio} />
                         </Grid>
@@ -51,7 +53,7 @@ const LifetimeComp = (props) => {
                             <SingleStatComp statType="winPercentage" stat={stats.lifetime.wins / stats.lifetime.gamesPlayed * 100} />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button style={{ width: "97%" }} onClick={() => { setOtherStats(!otherStats) }} >
+                            <Button style={{ width: "98.2%" }} onClick={() => { setOtherStats(!otherStats) }} >
                                 {otherStats ? <Box >Other Stats <ExpandLessIcon style={{ verticalAlign: "middle" }} /></Box> : <Box >Other Stats <ExpandMoreIcon style={{ verticalAlign: "middle" }} /></Box>}
                             </Button>
                         </Grid>
@@ -86,7 +88,9 @@ const LifetimeComp = (props) => {
                                 </Grid>
                             </Grid>
                         </Box>
-                    </Grid> : ""}
+                    </Grid>
+                    :
+                    <LifetimeCompSkel />}
             </Box>
         </Box>
     )

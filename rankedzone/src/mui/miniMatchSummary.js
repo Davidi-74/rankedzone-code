@@ -4,6 +4,7 @@ const miniMatchSummary = makeStyles({
     root: {
         width: "-webkit-fill-available",
         margin: 0,
+        fontSize: 16,
         backgroundColor: "rgba(0,0,0,0.3)",
         color: "white",
         "&:hover": {
