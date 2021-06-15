@@ -39,7 +39,7 @@ const MatchMVPs = (props) => {
     const placementDesign = placement();
     return (
         <Paper style={{ background: "#353535", marginBottom: "10px" }}>
-            <Button onClick={() => setShowComp(!showComp)} style={{ width: "100%" }}>
+            <Button onClick={() => setShowComp(!showComp)} fullWidth>
                 {showComp ? <Box>Match MVPs <ExpandLessIcon style={{ verticalAlign: "middle" }} /></Box> : <Box>Match MVPs <ExpandMoreIcon style={{ verticalAlign: "middle" }} /></Box>}
             </Button>
             <Box display={showComp ? "flex" : "none"} >

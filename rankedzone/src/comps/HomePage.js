@@ -3,6 +3,7 @@ import { useState } from 'react'
 import utils from './utils'
 import { BattleIcon, PSNIcon, XBLIcon } from '../mui/icons'
 import { homepagePlatforms } from '../mui/homepagePlatforms'
+import rankedzone from '../icons/RANKEDZONE.png'
 
 const HomePage = (props) => {
     const [username, setUsername] = useState("");
@@ -43,8 +44,8 @@ const HomePage = (props) => {
         <Container style={{ height: "100vh" }}>
             <Grid container direction="column" >
                 <Grid item xs={12} style={{ marginTop: "5%", marginBottom: "-40px" }}>
-                    <h1>SEARCH PROFILE</h1>
-                </Grid>
+                    <img src={rankedzone} height="60px" />
+                </Grid><br /><br />
                 <form onSubmit={(e) => getProfile(e)}>
                     <Grid container item direction="row" justify="center" alignItems="center">
                         <Grid item xs={10} style={{ margin: 1, padding: 0, flexBasis: "15%" }}>
@@ -63,19 +64,19 @@ const HomePage = (props) => {
                                     <ListItemIcon >
                                         <BattleIcon />
                                     </ListItemIcon>
-                                Battle.net
+                                    Battle.net
                                 </MenuItem>
                                 <MenuItem value="psn">
                                     <ListItemIcon>
                                         <PSNIcon />
                                     </ListItemIcon>
-                                PlayStation
+                                    PlayStation
                                 </MenuItem>
                                 <MenuItem value="xbl">
                                     <ListItemIcon>
                                         <XBLIcon />
                                     </ListItemIcon>
-                                XBOX
+                                    XBOX
                                 </MenuItem>
                             </Select><br /><br />
                         </Grid>

@@ -52,7 +52,7 @@ const SingleStatComp = (props) => {
     const tooltipDesign = nextRankTooltip();
     return (
         <Tooltip title={nextLevel} classes={{ tooltip: tooltipDesign[design] }} >
-            <Paper className={rankingDesign[design]}>
+            <Paper className={rankingDesign[design]} elevation={3}>
                 <Box style={{ color: "white", borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }} fontWeight="bolder">{displayStat(statType)}</Box>
                 <Box fontSize="30px" style={{ background: "white" }}>
                     {statType === "kd" || statType === "killsPerGame" ? stat.toFixed(2) : statType === "winPercentage" ? stat.toFixed(2) + "%" : stat.toLocaleString()}

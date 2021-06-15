@@ -73,7 +73,8 @@ const darkTheme = createMuiTheme({
             variant: "filled"
         },
         MuiSkeleton: {
-            animation: "wave"
+            animation: "wave",
+            variant: "rect"
         }
     },
     palette: {

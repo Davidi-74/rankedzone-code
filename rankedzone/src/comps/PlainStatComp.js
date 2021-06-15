@@ -46,7 +46,7 @@ const PlainStatComp = (props) => {
 
     const design = plainDesign();
     return (
-        <Paper className={design.root} >
+        <Paper className={design.root} elevation={3}>
             <Box style={{ borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }} fontWeight="bolder">{displayStat(statType)}</Box>
             <Box fontSize="20px" style={{ background: "white", color: "#212121", borderBottomLeftRadius: "3px", borderBottomRightRadius: "3px" }}>
                 {statType === "timePlayed" ? secondsToDhms(stat) : statType === "avgLifetime" ? secondsToDhms(stat) : statType === "headshotPercentage" ? formatHsPercentage(stat) : stat.toLocaleString()}

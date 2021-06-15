@@ -4,8 +4,9 @@ import MatchMVPs from "./MatchMVPs";
 import TeamComp from "./TeamComp";
 import utils from './utils'
 import sortButtons from '../mui/sortButtons'
-import StyledTableRow from "../mui/styledTableRow";
 import GroupedByPlayers from "./GroupedByPlayers";
+import SpecificMatchSkel from "./skeletons/SpecificMatchSkel";
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const SpecificMatchComp = (props) => {
     const [matchID, setMatchID] = useState(props.match.params.matchID);
@@ -146,19 +147,21 @@ const SpecificMatchComp = (props) => {
                             <h5>{utils.formatDate(matchData.utcStartSeconds)}</h5>
                         </Grid>
                         <Grid item xs={12} >
-                            {topTeamKills != null ? <MatchMVPs teamKills={topTeamKills} mode={matchData.mode} uno={uno} playerKills={topPlayerKills} key={topTeamKills[0].players[0].team} /> : ""}
+                            {topTeamKills != null ? <MatchMVPs teamKills={topTeamKills} mode={matchData.mode} uno={uno} playerKills={topPlayerKills} key={topTeamKills[0].players[0].team} /> : <Grid item xs={12}><Skeleton width={1463} height={37} /></Grid>}
                         </Grid>
                         <Grid container item xs={12} justify="center">
                             {
                                 matchData.mode != "br_brsolo" ?
-                                    <Grid container item xs={12} md={2} justify="center">
-                                        <div style={{ marginBottom: "5px" }}>
-                                            <h5 style={{ marginTop: "5px", marginBottom: "10px", color: "#909090" }}>GROUP BY</h5>
-                                            <ButtonGroup size="small">
+                                    <Grid container item xs={12} md={3} direction="column" justify="center" alignItems="center">
+                                        <Grid item xs={12}>
+                                            <h5 style={{ color: "#909090" }}>GROUP BY</h5>
+                                        </Grid>
+                                        <Grid container item xs={12} justify="center" alignItems="stretch">
+                                            <ButtonGroup size="small" fullWidth>
                                                 <Button className={sortButtonsDesign[group[0]]} onClick={() => { setGroupBy("teams"); setGroup(["picked", "root"]) }}>TEAMS</Button>
                                                 <Button className={sortButtonsDesign[group[1]]} onClick={() => { if (players.length === 0) { getPlayers() }; setGroupBy("players"); setGroup(["root", "picked"]) }}>PLAYERS</Button>
                                             </ButtonGroup>
-                                        </div>
+                                        </Grid>
                                     </Grid>
                                     :
                                     null
@@ -171,18 +174,22 @@ const SpecificMatchComp = (props) => {
                                     :
                                     null
                             }
-                            <Grid container item xs={12} md={2} justify="center">
-                                <div style={{ marginBottom: "5px" }}>
-                                    <h5 style={{ marginTop: "5px", marginBottom: "10px", color: "#909090" }}>SORT BY</h5>
-                                    {
-                                        groupBy === ("teams") ?
-                                            <ButtonGroup size="small">
+                            <Grid container item xs={12} md={3} direction="row" justify="center" alignItems="center">
+                                <Grid item xs={12}>
+                                    <h5 style={{ color: "#909090" }}>SORT BY</h5>
+                                </Grid>
+                                {
+                                    groupBy === ("teams") ?
+                                        <Grid container item xs={12} justify="center" alignItems="center">
+                                            <ButtonGroup size="small" fullWidth>
                                                 <Button className={sortButtonsDesign[sort[0]]} onClick={() => { sortBy("teamPlacement"); setSort(["picked", "root", "root"]) }}>Placement</Button>
                                                 <Button className={sortButtonsDesign[sort[1]]} onClick={() => { sortBy("kills"); setSort(["root", "picked", "root"]) }}>Kills</Button>
                                                 <Button className={sortButtonsDesign[sort[2]]} onClick={() => { sortBy("damageDone"); setSort(["root", "root", "picked"]) }}>Damage</Button>
                                             </ButtonGroup>
-                                            :
-                                            <ButtonGroup size="small">
+                                        </Grid>
+                                        :
+                                        <Grid container item xs={12} justify="center" alignItems="stretch">
+                                            <ButtonGroup size="small" fullWidth>
                                                 <Button className={sortButtonsDesign[groupSort[0]]}
                                                     onClick={() => {
                                                         let sorted = sortPlayersByKills(players)
@@ -200,8 +207,8 @@ const SpecificMatchComp = (props) => {
                                                     DAMAGE
                                                 </Button>
                                             </ButtonGroup>
-                                    }
-                                </div>
+                                        </Grid>
+                                }
                             </Grid>
                         </Grid>
                         <Grid item xs={12}>
@@ -215,7 +222,7 @@ const SpecificMatchComp = (props) => {
                         </Grid>
                     </Grid>
                     :
-                    ""
+                    <SpecificMatchSkel />
             }
         </Container>
     )

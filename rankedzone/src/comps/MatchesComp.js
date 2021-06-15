@@ -54,7 +54,7 @@ const MatchesComp = (props) => {
                         })
 
                         return (
-                            <Paper style={{ background: "#353535" }}>
+                            <Paper style={{ background: "#272727" }}>
                                 <Grid container direction="row" justify="center" alignItems="center">
                                     <Grid container item direction="row" justify="center" alignItems="center" xs={12} >
                                         <SessionSummary key={"session" + index} session={session} />
