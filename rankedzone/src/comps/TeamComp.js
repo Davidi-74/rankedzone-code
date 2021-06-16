@@ -1,4 +1,4 @@
-import { Paper, Grid, TableContainer, TableHead, TableRow, TableBody, Table } from "@material-ui/core"
+import { Paper, Grid, TableContainer, TableHead, TableBody, Table } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import placement from '../mui/tablePlacementPaper'
 import StyledTableCell from '../mui/styledTableCell'
@@ -86,7 +86,7 @@ const TeamComp = (props) => {
                                             <StyledTableRow>
                                                 <StyledTableCell component="th" scope="row" >
                                                     TEAM SUMMARY
-                                            </StyledTableCell>
+                                                </StyledTableCell>
                                                 <StyledTableCell align="center">{teamStats.kills}</StyledTableCell>
                                                 <StyledTableCell align="center">{teamStats.deaths}</StyledTableCell>
                                                 <StyledTableCell align="center">{teamStats.damageDone.toLocaleString()}</StyledTableCell>

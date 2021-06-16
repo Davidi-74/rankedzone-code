@@ -1,4 +1,4 @@
-import { ButtonGroup, Container, Grid, Button, useMediaQuery, useTheme, Divider, TableContainer } from "@material-ui/core"
+import { ButtonGroup, Container, Grid, Button, useMediaQuery, useTheme, Divider } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import MatchMVPs from "./MatchMVPs";
 import TeamComp from "./TeamComp";

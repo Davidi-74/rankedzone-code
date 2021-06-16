@@ -1,4 +1,4 @@
-import { Box, Container, Grid, MenuItem, Paper, Select } from "@material-ui/core"
+import { Grid, MenuItem, Select } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import SingleStatComp from "./SingleStatComp";
 import utils from './utils'
@@ -18,6 +18,7 @@ const WeeklyComp = (props) => {
 
     const getOptionalModes = () => {
         let modes = [];
+        console.log(stats.weekly);
         if (stats.weekly) {
             Object.keys(stats.weekly).forEach(mode => {
                 if (stats.weekly[mode]) {
@@ -29,37 +30,37 @@ const WeeklyComp = (props) => {
     }
 
     const formatModeName = (mode) => {
-        if (mode == "all") {
+        if (mode === "all") {
             return "All Modes"
         }
-        if (mode == "brSolo") {
+        if (mode === "brSolo") {
             return "BR Solo"
         }
-        if (mode == "brDous") {
+        if (mode === "brDous") {
             return "BR Dous"
         }
-        if (mode == "brTrios") {
+        if (mode === "brTrios") {
             return "BR Trios"
         }
-        if (mode == "brQuads") {
+        if (mode === "brQuads") {
             return "BR Quads"
         }
-        if (mode == "resurgenceDous") {
+        if (mode === "resurgenceDous") {
             return "Resurgence Dous"
         }
-        if (mode == "resurgenceTrios") {
+        if (mode === "resurgenceTrios") {
             return "Resurgence Trios"
         }
-        if (mode == "resurgenceQuads") {
+        if (mode === "resurgenceQuads") {
             return "Resurgence Quads"
         }
-        if (mode == "rebirthDous") {
+        if (mode === "rebirthDous") {
             return "Rebirth Dous"
         }
-        if (mode == "rebirthTrios") {
+        if (mode === "rebirthTrios") {
             return "Rebirth Trios"
         }
-        if (mode == "rebirthQuads") {
+        if (mode === "rebirthQuads") {
             return "Rebirth Quads"
         }
     }

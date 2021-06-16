@@ -39,6 +39,9 @@ const PlainStatComp = (props) => {
     }
 
     const formatHsPercentage = (hs) => {
+        if (hs === 0) {
+            return 0 + "%";
+        }
         let temp = hs * 100;
         let hsString = String(temp);
         return hsString[0] + hsString[1] + "%";

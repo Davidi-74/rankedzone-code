@@ -1,4 +1,4 @@
-import { Button, MenuItem, Select, TextField, Container, ListItemIcon, InputLabel, FormControl, Grid, ListItem } from '@material-ui/core'
+import { Button, MenuItem, Select, TextField, Container, ListItemIcon, Grid } from '@material-ui/core'
 import { useState } from 'react'
 import utils from './utils'
 import { BattleIcon, PSNIcon, XBLIcon } from '../mui/icons'
@@ -24,18 +24,6 @@ const HomePage = (props) => {
         }
         else {
             alert("Please enter a username!")
-        }
-    }
-
-    const showSelectedValueIcon = (value) => {
-        if (value === "battle") {
-            return <ListItemIcon><BattleIcon /></ListItemIcon>
-        }
-        if (value === "psn") {
-            return <ListItemIcon><PSNIcon /></ListItemIcon>
-        }
-        if (value === "xbl") {
-            return <ListItemIcon><XBLIcon /></ListItemIcon>
         }
     }
 

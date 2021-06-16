@@ -1,6 +1,6 @@
-import { Box, Button, ButtonBase, Container, Divider, Grid, Paper, useMediaQuery, useTheme } from "@material-ui/core"
+import { ButtonBase, Divider, Grid, Paper, useMediaQuery, useTheme } from "@material-ui/core"
 import { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import placement from '../mui/placementPaper'
 import bgImage from '../mui/matchBgImage'
 import miniMatchSummary from '../mui/miniMatchSummary'
@@ -9,13 +9,8 @@ import utils from './utils'
 const MiniMatchSummary = (props) => {
     const [match, setMatch] = useState(null);
     const [items, setItems] = useState("");
-    const history = useHistory();
     const theme = useTheme();
     const screenSize = useMediaQuery(theme.breakpoints.up('md'));
-
-    useEffect(() => {
-        setMatch(props.matchData)
-    }, [])
 
     const placementStyle = placement();
     const placementColor = (placement) => {
@@ -31,8 +26,9 @@ const MiniMatchSummary = (props) => {
         return placementStyle.other
     }
 
-
-
+    useEffect(() => {
+        setMatch(props.matchData)
+    }, [])
 
     const paperDesign = miniMatchSummary();
     useEffect(() => {
@@ -123,13 +119,6 @@ const MiniMatchSummary = (props) => {
             setItems(items);
         }
     }, [match, screenSize])
-
-    const matchRef = () => {
-        if (match) {
-            history.push(`/match/${match.matchID}/${props.uno}`);
-        }
-    }
-
 
     const matchBgImage = bgImage();
     const pickBgImage = (mode) => {

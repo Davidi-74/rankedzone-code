@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { Button, MenuItem, Select, TextField, Container, Grid, Box, makeStyles, useMediaQuery, useTheme, Paper } from '@material-ui/core'
+import { Container, Grid, useMediaQuery, useTheme } from '@material-ui/core'
 import utils from './utils'
 import LifetimeComp from './LifetimeComp'
 import WeeklyComp from './WeeklyComp'
 import MatchesComp from './MatchesComp'
-import { BattleIcon, PSNIcon, XBLIcon } from '../mui/icons'
 import isSticky from '../mui/stickyLifetime'
 
 const PlayerComp = (props) => {

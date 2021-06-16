@@ -7,7 +7,7 @@ import SpecificTableCell from '../mui/specificTableCell'
 const GroupedByPlayers = (props) => {
     const [players, setPlayers] = useState(props.players)
     const [uno, setUno] = useState(props.uno);
-    console.log(players);
+
     return (
         <Paper style={{ background: "#707070" }}>
             <TableContainer>

@@ -1,4 +1,4 @@
-import { Container, Grid, Paper } from "@material-ui/core"
+import { Grid, Paper } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import utils from './utils'
 import MiniMatchSummary from './MiniMatchSummary'
@@ -45,7 +45,7 @@ const MatchesComp = (props) => {
 
     return (
         <div>
-            <h3 style={{ color: "white" }}>Last 20 Matches</h3>
+            <h3>Last 20 Matches</h3>
             {
                 matches.length !== 0 ?
                     matches.map((session, index) => {
