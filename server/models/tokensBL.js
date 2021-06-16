@@ -1,6 +1,6 @@
 const Tokens = require('./tokensSchema')
 const axios = require('axios')
-const qs = require('qs');
+const formData = require('form-data')
 
 // gets the token stored in the DB (only one should be stored)
 const getAll = () => {
@@ -34,7 +34,7 @@ const extractToken = (raw) => {
 const getCSRFToken = () => {
     const initConfig = {
         method: 'get',
-        url: 'https://s.activision.com/activision/login',
+        url: 'https://profile.callofduty.com/cod/login',
         headers: {}
     };
 
@@ -55,19 +55,18 @@ const getCSRFToken = () => {
 
 // gets ACT_SSO_COOKIE and atkn from activision authentication and return all three tokens
 const getSSOAndAtkn = (csrf) => {
-    const data = qs.stringify({
-        'username': 'yeahitsdavidi@gmail.com',
-        'password': '6075a606d1d0ca30800c7b2c',
-        'remember_me': 'true',
-        '_csrf': csrf
-    });
+    const data = new formData();
+    data.append('username', 'yeahitsdavidi@gmail.com');
+    data.append('password', '6075a606d1d0ca30800c7b2c');
+    data.append('remember_me', 'true');
+    data.append('_csrf', csrf);
 
     const loginConfig = {
         method: 'post',
-        url: 'https://s.activision.com/do_login?new_SiteId=activision',
+        url: 'https://profile.callofduty.com/do_login?new_SiteId=cod',
         headers: {
-            'Cookie': `XSRF-TOKEN=${csrf}; new_SiteId=activision;`,
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Cookie': `XSRF-TOKEN=${csrf}; comid=cod; new_SiteId=cod; tfa_enrollment_seen=true`,
+            ...data.getHeaders()
         },
         data: data,
         maxRedirects: 0
