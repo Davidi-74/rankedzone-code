@@ -1,6 +1,7 @@
 import { Grid } from "@material-ui/core"
 import Skeleton from '@material-ui/lab/Skeleton';
 import { useMediaQuery, useTheme } from "@material-ui/core";
+import LogoComp from '../LogoComp'
 
 const SpecificMatchSkel = (props) => {
     const theme = useTheme();
@@ -9,6 +10,9 @@ const SpecificMatchSkel = (props) => {
     return (
         screenSize ?
             <Grid container direction="column" alignItems="center" jusity="center" spacing={1} style={{ marginTop: "30px" }}>
+                <Grid item xs={12}>
+                    <LogoComp />
+                </Grid>
                 <Grid item xs={12}>
                     <Skeleton width={500} height={37} />
                 </Grid>

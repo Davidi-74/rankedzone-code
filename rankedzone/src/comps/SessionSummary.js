@@ -32,9 +32,9 @@ const SessionSummary = (props) => {
             {
                 sessionStats !== null ?
                     <Grid container direction="row" justify="center" alignItems="center">
-                        <Grid item xs={12}>
+                        <Grid item xs={12} style={{ width: "300px" }}>
                             <h4 style={{ color: "white" }}>
-                                {session.length} MATCHES IN A ROW
+                                {session.length === 1 ? session.length + " MATCH" : session.length + " MATCHES IN A ROW"}
                             </h4>
                         </Grid>
                         <Grid item xs={12} md={4}>
@@ -46,7 +46,6 @@ const SessionSummary = (props) => {
                         <Grid item xs={6} md={4}>
                             <SingleStatComp statType="killsPerGame" stat={sessionStats.killsPerGame} />
                         </Grid>
-
                     </Grid>
                     :
                     <SessionSummarySkel />

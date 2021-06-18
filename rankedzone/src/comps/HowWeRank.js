@@ -1,11 +1,15 @@
 import { Container, Grid } from "@material-ui/core"
 import SpecificRankedStat from "./SpecificRankedStat"
+import LogoComp from './LogoComp'
 
 const HowWeRank = (props) => {
 
     return (
         <Container>
             <Grid container direction="row" alignItems="center" justify="center" style={{ marginBottom: "100px" }}>
+                <Grid item xs={12}>
+                    <LogoComp />
+                </Grid>
                 <Grid item xs={12}>
                     <h1>HOW WE RANK</h1>
                 </Grid>

@@ -4,6 +4,7 @@ import utils from './utils'
 import LifetimeComp from './LifetimeComp'
 import WeeklyComp from './WeeklyComp'
 import MatchesComp from './MatchesComp'
+import LogoComp from './LogoComp'
 import isSticky from '../mui/stickyLifetime'
 
 const PlayerComp = (props) => {
@@ -14,8 +15,11 @@ const PlayerComp = (props) => {
 
     const stickyLifetime = isSticky();
     return (
-        <Container>
-            <Grid container direction="row" justify="flex-start" alignItems="flex-start" >
+        <Container >
+            <Grid container direction="row" justify="flex-start" alignItems="flex-start"  >
+                <Grid item xs={12}>
+                    <LogoComp />
+                </Grid>
                 <Grid item xs={12}>
                     {screenSize ?
                         <h1>

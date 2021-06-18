@@ -7,6 +7,7 @@ import sortButtons from '../mui/sortButtons'
 import GroupedByPlayers from "./GroupedByPlayers";
 import SpecificMatchSkel from "./skeletons/SpecificMatchSkel";
 import Skeleton from '@material-ui/lab/Skeleton';
+import LogoComp from './LogoComp'
 
 const SpecificMatchComp = (props) => {
     const [matchID, setMatchID] = useState(props.match.params.matchID);
@@ -136,6 +137,9 @@ const SpecificMatchComp = (props) => {
             {
                 teams.length > 0 ?
                     <Grid container direction="column" alignItems="stretch" jusity="center">
+                        <Grid item xs={12}>
+                            <LogoComp />
+                        </Grid>
                         <Grid item xs={12}>
                             {
                                 screenSize ?

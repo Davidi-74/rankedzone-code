@@ -3,19 +3,22 @@ import { useState } from 'react'
 import utils from './utils'
 import { BattleIcon, PSNIcon, XBLIcon } from '../mui/icons'
 import { homepagePlatforms } from '../mui/homepagePlatforms'
-import rankedzone from '../icons/RANKEDZONE.png'
+import LogoComp from './LogoComp'
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const HomePage = (props) => {
     const [username, setUsername] = useState("");
     const [platform, setPlatform] = useState("battle")
+    const [alert, setAlert] = useState("");
 
     const getProfile = async (e) => {
         e.preventDefault();
         if (username != "") {
+            setAlert(<span><LinearProgress style={{ width: "275px" }} color="secondary" /></span>)
             let resp = await utils.searchProfile(username, platform);
             if (resp.errors) {
                 if (resp.errors[0].message === "Cannot return null for non-nullable field profileType.username.") {
-                    alert("Username Not Found!")
+                    setAlert(<p style={{ marginTop: "-10px", fontSize: 16 }}>Username Not Found!</p>)
                 }
             }
             else {
@@ -23,7 +26,7 @@ const HomePage = (props) => {
             }
         }
         else {
-            alert("Please enter a username!")
+            setAlert(<p style={{ marginTop: "-10px", fontSize: 16 }}>Please enter a username!</p>)
         }
     }
 
@@ -31,8 +34,8 @@ const HomePage = (props) => {
     return (
         <Container style={{ height: "100vh" }}>
             <Grid container direction="column" >
-                <Grid item xs={12} style={{ marginTop: "5%", marginBottom: "-40px" }}>
-                    <img src={rankedzone} height="60px" />
+                <Grid item xs={12} style={{ marginTop: "130px", marginBottom: "-1%" }}>
+                    <LogoComp />
                 </Grid><br /><br />
                 <form onSubmit={(e) => getProfile(e)}>
                     <Grid container item direction="row" justify="center" alignItems="center">
@@ -67,6 +70,14 @@ const HomePage = (props) => {
                                     XBOX
                                 </MenuItem>
                             </Select><br /><br />
+                        </Grid>
+                        <Grid container item justify="center" xs={12} style={{ height: "20px" }}>
+                            {
+                                alert != "" ?
+                                    alert
+                                    :
+                                    null
+                            }
                         </Grid>
                         <Grid item xs={12}>
                             <Button onClick={getProfile} type="submit" style={{ width: "290px" }}>Search</Button>

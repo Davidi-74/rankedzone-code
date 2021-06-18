@@ -80,6 +80,9 @@ const darkTheme = createMuiTheme({
     palette: {
         primary: {
             main: "#FFFFFF"
+        },
+        secondary: {
+            main: "#29b6f6"
         }
     }
 })
