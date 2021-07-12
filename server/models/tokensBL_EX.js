@@ -56,8 +56,8 @@ const getCSRFToken = () => {
 // gets ACT_SSO_COOKIE and atkn from activision authentication and returns all three tokens
 const getSSOAndAtkn = (csrf) => {
     const data = new formData();
-    data.append('username', 'yeahitsdavidi@gmail.com');
-    data.append('password', '6075a606d1d0ca30800c7b2c');
+    data.append('username', 'YOUR_EMAIL');
+    data.append('password', 'YOUR_PASSWORD');
     data.append('remember_me', 'true');
     data.append('_csrf', csrf);
 
