@@ -7,10 +7,6 @@ const mongoose = require('mongoose');
 
 
 const getTokens = async () => {
-    await mongoose.connect('mongodb://localhost:27017/wzDB', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
     const tokens = await Tokens.find({});
     return tokens[0];
 }
