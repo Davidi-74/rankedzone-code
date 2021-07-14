@@ -84,14 +84,14 @@ const WeeklyComp = (props) => {
 
     const selectDesign = homepagePlatforms();
     return (
-        <div>
+        <div >
             <h3 style={{ color: "white" }}>
                 Weekly Battle Royale Stats for&nbsp;
                 <Select MenuProps={{
                     classes: { paper: selectDesign.root },
                     anchorOrigin: { vertical: "bottom", horizontal: "left" },
                     transformOrigin: { vertical: "top", horizontal: "left" },
-                    getContentAnchorEl: null,
+                    getContentAnchorEl: null
                 }}
                     defaultValue="all"
                     variant="outlined"

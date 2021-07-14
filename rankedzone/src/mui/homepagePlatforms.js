@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core"
 
 const homepagePlatforms = makeStyles({
     root: {
-        backgroundColor: "#212121"
+        backgroundColor: "#212121",
     }
 })
 

@@ -535,11 +535,15 @@ const modeName = (mode) => {
         case "br_rebirth_resurgence_trios": return "VERDANSK RESURGENCE TRIOS";
         case "br_rebirth_resurgence_quads": return "VERDANSK RESURGENCE QUADS";
         case "br_bodycount_pwergrb": return "POWER GRAB";
+        case "br_dmz_plnbld": return "PLUNDER"
         default: return mode;
     }
 }
 
 const ordinalNumbers = (num) => {
+    if (num === null) {
+        return "N/A"
+    }
     let numString = String(num);
     let lastNum = numString[numString.length - 1];
     if (numString == 11 || numString == 12 || numString == 13 || numString == 111 || numString == 112 || numString == 113) {

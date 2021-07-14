@@ -110,7 +110,7 @@ const schema = buildSchema(`
         kdRatio: Float!
         totalXp: Float!
         headshots: Float!
-        teamPlacement: Float!
+        teamPlacement: Float
         damageDone: Float!
         damageTaken: Float!
         lifetimeKDRatio: Float

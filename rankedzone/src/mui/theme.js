@@ -34,7 +34,7 @@ const darkTheme = createMuiTheme({
         },
         MuiSelect: {
             root: {
-                color: "#f7fbfc"
+                color: "#f7fbfc",
             },
             icon: {
                 color: "#f7fbfc"

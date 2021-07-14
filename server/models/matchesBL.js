@@ -101,6 +101,20 @@ const sortByTeam = (players) => {
     return teams;
 }
 
+const plunderSortByTeam = (players) => {
+    let teams = [];
+    let passed = [];
+    players.forEach((player) => {
+        let currentTeam = player.team;
+        if (!passed.includes(currentTeam)) {
+            passed.push(currentTeam)
+            let team = players.filter(player => player.team === currentTeam);
+            teams.push(team);
+        }
+    })
+    return teams;
+}
+
 
 
 const searchUser = async (username, uno) => {
@@ -449,8 +463,13 @@ const formatMatchByID = async (data) => {
         };
         return relevantStats;
     })
-
-    let teams = sortByTeam(relevantData)
+    let teams = [];
+    if (obj.mode === "br_dmz_plnbld") {
+        teams = plunderSortByTeam(relevantData)
+    }
+    else {
+        teams = sortByTeam(relevantData)
+    }
     let teamsCopy = [];
     teams.forEach((team) => {
         let teamStats = sumTeamStats(team);
@@ -460,9 +479,7 @@ const formatMatchByID = async (data) => {
         }
         teamsCopy.push(obj);
     })
-    // if (obj.mode === "br_brsolo") {
-    //     teamsCopy.pop();
-    // }
+
     obj.teams = teamsCopy;
     return obj;
 }
