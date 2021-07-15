@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 // mongoose.connect('mongodb://localhost:27017/wzDB', {
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true
 // })
 
-const uri = "mongodb+srv://davidi74:RJ6xWZhZsiYquUg@cluster0.mx9dx.mongodb.net/wzDB?retryWrites=true&w=majority";
+const uri = process.env.URI
 
 mongoose.connect(uri, {
     useNewUrlParser: true,
