@@ -1,6 +1,8 @@
 import { BattleIcon, PSNIcon, XBLIcon } from '../mui/icons'
 
-const serverURL = "http://localhost:8000/graphql"
+// const serverURL = "http://localhost:8000/graphql"
+const serverURL = "https://rankedzone-server.herokuapp.com/graphql"
+
 
 const getProfile = async (username, platform) => {
 
@@ -569,4 +571,7 @@ const formatDate = (milis) => {
     return String(date.substring(0, 3) + ", " + date.substring(4, 10) + " | " + time);
 }
 
-export default { getProfile, searchProfile, getLifetimeStats, getWeeklyStats, getMatches, getMatchDetails, showSelectedValueIcon, getRankingDesign, modeName, ordinalNumbers, formatDate }
+export default {
+    getProfile, searchProfile, getLifetimeStats, getWeeklyStats, getMatches,
+    getMatchDetails, showSelectedValueIcon, getRankingDesign, modeName, ordinalNumbers, formatDate
+}
