@@ -13,4 +13,4 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true,
     rootValue: root
 }))
-app.listen(8000, () => console.log("Server is up!"))
+app.listen(process.env.PORT || 8000, () => console.log("Server is up!"))
