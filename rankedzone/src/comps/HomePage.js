@@ -41,7 +41,7 @@ const HomePage = (props) => {
                 <form onSubmit={(e) => getProfile(e)}>
                     <Grid container item direction="row" justify="center" alignItems="center">
                         <Grid item xs={10} style={{ margin: 1, padding: 0, flexBasis: "15%" }}>
-                            <TextField type="text" label="Username" InputLabelProps={{ shrink: true }} placeholder='e.g. "Davidi74#2560"' style={{ width: "100%" }} onChange={e => setUsername(e.target.value)} />
+                            <TextField type="text" label="Username" InputLabelProps={{ shrink: true }} placeholder='e.g. "Davidi74#2560"' style={{ width: "40vh" }} onChange={e => setUsername(e.target.value)} />
                         </Grid>
                         <Grid item xs={2} style={{ margin: 0, padding: 0, flexBasis: 0, paddingTop: "25px" }}>
                             <Select value={platform} style={{ width: "65px", height: "47.5px", paddingBottom: "20%" }} MenuProps={{
