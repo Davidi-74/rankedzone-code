@@ -29,7 +29,7 @@ const LifetimeComp = (props) => {
             <h3 style={{ paddingBottom: "9px" }}>
                 Lifetime BR Stats&nbsp;
                 <Tooltip title="HOW WE RANK" classes={{ tooltip: helpDesign.tooltip }}>
-                    <ButtonBase component={Link} to="/ranking" onClick={(e) => { e.preventDefault(); window.open("/rankedzonebuild/ranking") }}>
+                    <ButtonBase component={Link} to="/ranking" onClick={(e) => { e.preventDefault(); window.open("/rankedzone/ranking") }}>
                         <HelpOutlineIcon fontSize="small" className={helpDesign.root} />
                     </ButtonBase>
                 </Tooltip>
