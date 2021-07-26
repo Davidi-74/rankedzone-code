@@ -8,10 +8,7 @@ const darkTheme = createMuiTheme({
                 color: "#f7fbfc",
                 textAlign: "center",
                 fontFamily: "Calibri",
-                fontSize: 20,
-                height: "100%",
-                display: "flex",
-                flexDirection: "column"
+                fontSize: 20
             }
         },
         MuiButton: {
@@ -55,6 +52,11 @@ const darkTheme = createMuiTheme({
         MuiSkeleton: {
             root: {
                 borderRadius: "4px"
+            }
+        },
+        MuiListItemIcon: {
+            root: {
+                minWidth: 0
             }
         }
     },

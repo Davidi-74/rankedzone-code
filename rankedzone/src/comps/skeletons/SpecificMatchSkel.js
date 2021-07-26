@@ -9,7 +9,7 @@ const SpecificMatchSkel = (props) => {
 
     return (
         screenSize ?
-            <Grid container direction="column" alignItems="center" jusity="center" spacing={1} style={{ marginTop: "30px" }}>
+            <Grid container direction="column" alignItems="center" jusity="center" spacing={1} >
                 <Grid item xs={12}>
                     <LogoComp />
                 </Grid>

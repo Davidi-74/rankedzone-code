@@ -164,11 +164,11 @@ const SpecificMatchComp = (props) => {
                         <Grid container item xs={12} justify="center">
                             {
                                 matchData.mode != "br_brsolo" ?
-                                    <Grid container item xs={12} md={3} direction="column" justify="center" alignItems="center">
+                                    <Grid container item xs={12} md={3} justify="center" alignItems="center">
                                         <Grid item xs={12}>
                                             <h5 style={{ color: "#909090" }}>GROUP BY</h5>
                                         </Grid>
-                                        <Grid container item xs={12} justify="center" alignItems="stretch">
+                                        <Grid container item xs={12} justify="center" alignItems="center">
                                             <ButtonGroup size="small" fullWidth>
                                                 <Button className={sortButtonsDesign[group[0]]} onClick={() => { setGroupBy("teams"); setGroup(["picked", "root"]) }}>TEAMS</Button>
                                                 <Button className={sortButtonsDesign[group[1]]} onClick={() => { if (players.length === 0) { getPlayers() }; setGroupBy("players"); setGroup(["root", "picked"]) }}>PLAYERS</Button>
@@ -208,7 +208,7 @@ const SpecificMatchComp = (props) => {
                                             }
                                         </Grid>
                                         :
-                                        <Grid container item xs={12} justify="center" alignItems="stretch">
+                                        <Grid container item xs={12} justify="center" alignItems="center">
                                             <ButtonGroup size="small" fullWidth>
                                                 <Button className={sortButtonsDesign[groupSort[0]]}
                                                     onClick={() => {
