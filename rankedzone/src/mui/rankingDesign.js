@@ -1,6 +1,5 @@
 import { makeStyles } from "@material-ui/core";
 
-
 const ranking = makeStyles({
     wood: {
         background: "linear-gradient(250deg, #443022 0%, #2f2117 21%, #443022 40%, #2f2117 100%)"

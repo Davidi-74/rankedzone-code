@@ -2,7 +2,6 @@ import { Paper, Box } from "@material-ui/core";
 import { useState } from "react"
 import sessionSummaryWins from "../mui/sessionSummaryWin";
 
-
 const SessionSummaryWins = (props) => {
     const [wins, setWins] = useState(props.wins);
 

@@ -1,6 +1,5 @@
 const { withStyles, TableCell } = require("@material-ui/core");
 
-
 const StyledTableCell = withStyles(() => ({
     head: {
         background: "#353535",

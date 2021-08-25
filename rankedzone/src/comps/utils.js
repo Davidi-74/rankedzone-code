@@ -3,9 +3,7 @@ import { BattleIcon, PSNIcon, XBLIcon } from '../mui/icons'
 // const serverURL = "http://localhost:8000/graphql"
 const serverURL = "https://rankedzone-server.herokuapp.com/graphql"
 
-
 const getProfile = async (username, platform) => {
-
     const weeklyModeData = `
         kdRatio
         kills
@@ -96,7 +94,6 @@ const getProfile = async (username, platform) => {
 }
 
 const searchProfile = async (username, platform) => {
-
     const query = `
     query GetProfile($username: String, $platform: String) {
         getProfile(username: $username, platform: $platform) {
@@ -361,15 +358,12 @@ const getMatchDetails = async (matchID) => {
     }
 }
 
-const showSelectedValueIcon = (value) => {
-    if (value === "battle") {
-        return <BattleIcon />
-    }
-    if (value === "psn") {
-        return <PSNIcon />
-    }
-    if (value === "xbl") {
-        return <XBLIcon />
+const showSelectedValueIcon = (platform) => {
+    switch (platform) {
+        case "battle": return <BattleIcon />
+        case "psn": return <PSNIcon />
+        case "xbl": return <XBLIcon />
+        default: return null
     }
 }
 

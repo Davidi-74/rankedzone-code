@@ -1,6 +1,5 @@
 import { makeStyles } from "@material-ui/core";
 
-
 const teamCompDesign = makeStyles({
     general: {
         background: "#707070",

@@ -30,38 +30,19 @@ const WeeklyComp = (props) => {
     }
 
     const formatModeName = (mode) => {
-        if (mode === "all") {
-            return "All Modes"
-        }
-        if (mode === "brSolo") {
-            return "BR Solo"
-        }
-        if (mode === "brDous") {
-            return "BR Dous"
-        }
-        if (mode === "brTrios") {
-            return "BR Trios"
-        }
-        if (mode === "brQuads") {
-            return "BR Quads"
-        }
-        if (mode === "resurgenceDous") {
-            return "Resurgence Dous"
-        }
-        if (mode === "resurgenceTrios") {
-            return "Resurgence Trios"
-        }
-        if (mode === "resurgenceQuads") {
-            return "Resurgence Quads"
-        }
-        if (mode === "rebirthDous") {
-            return "Rebirth Dous"
-        }
-        if (mode === "rebirthTrios") {
-            return "Rebirth Trios"
-        }
-        if (mode === "rebirthQuads") {
-            return "Rebirth Quads"
+        switch (mode) {
+            case "all": return "All Modes"
+            case "brSolo": return "BR Solo"
+            case "brDous": return "BR Dous"
+            case "brTrios": return "BR Trios"
+            case "brQuads": return "BR Quads"
+            case "resurgenceDous": return "Resurgence Dous"
+            case "resurgenceTrios": return "Resurgence Trios"
+            case "resurgenceQuads": return "Resurgence Quads"
+            case "rebirthDous": return "Rebirth Dous"
+            case "rebirthTrios": return "Rebirth Trios"
+            case "rebirthQuads": return "Rebirth Quads"
+            default: return null
         }
     }
 

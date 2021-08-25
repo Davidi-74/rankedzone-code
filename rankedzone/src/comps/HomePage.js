@@ -10,7 +10,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 const HomePage = (props) => {
     const [username, setUsername] = useState("");
     const [platform, setPlatform] = useState("battle")
-    const [alert, setAlert] = useState(<span><br /></span>);
+    const [alert, setAlert] = useState(<span><br /></span>)
 
     const getProfile = async (e) => {
         e.preventDefault();
@@ -89,16 +89,14 @@ const HomePage = (props) => {
                 </form>
             </Grid>
             <Grid item xs={12}>
-                <footer>
-                    <br /><br /><div>
-                        RANKEDZONE is a mobile-friendly web application used for ranking and tracking Call of Duty: Warzone statistics,
-                        integrating with COD's official API. <br /><br />
-                        RANKEDZONE was created by Davidi Shohat <br /> <br />
-                        <ButtonBase href="https://github.com/Davidi-74">
-                            <GitHubIcon />
-                        </ButtonBase>
-                    </div>
-                </footer>
+                <br /><br /><div>
+                    RANKEDZONE is a mobile-friendly web application used for ranking and tracking Call of Duty: Warzone statistics,
+                    integrating with COD's official API. <br /><br />
+                    RANKEDZONE was created by Davidi Shohat <br /> <br />
+                    <ButtonBase href="https://github.com/Davidi-74">
+                        <GitHubIcon />
+                    </ButtonBase>
+                </div>
             </Grid>
         </Container>
     )

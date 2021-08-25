@@ -1,6 +1,5 @@
 import { makeStyles } from "@material-ui/core";
 
-
 const nextRankTooltipArrow = makeStyles({
     wood: {
         color: "#443022"

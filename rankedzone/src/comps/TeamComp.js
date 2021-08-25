@@ -15,16 +15,12 @@ const TeamComp = (props) => {
 
     const placementStyle = placement();
     const placementColor = (placement) => {
-        if (placement === 1) {
-            return placementStyle.first;
+        switch (placement) {
+            case 1: return placementStyle.first
+            case 2: return placementStyle.second
+            case 3: return placementStyle.third
+            default: return placementStyle.other
         }
-        if (placement === 2) {
-            return placementStyle.second;
-        }
-        if (placement === 3) {
-            return placementStyle.third;
-        }
-        return placementStyle.other
     }
 
     const isSpecificPlayer = () => {
