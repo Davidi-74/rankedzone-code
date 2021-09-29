@@ -531,7 +531,9 @@ const modeName = (mode) => {
         case "br_rebirth_resurgence_trios": return "VERDANSK RESURGENCE TRIOS";
         case "br_rebirth_resurgence_quads": return "VERDANSK RESURGENCE QUADS";
         case "br_bodycount_pwergrb": return "POWER GRAB";
-        case "br_dmz_plnbld": return "PLUNDER"
+        case "br_dmz_plnbld": return "BLOOD MONEY"
+        case "br_dmz_plunquad": return "PLUNDER QUADS"
+        case "br_dbd_dbd": return "IRON TRIALS '84"
         default: return mode;
     }
 }

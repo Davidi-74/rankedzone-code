@@ -54,7 +54,7 @@ const SpecificMatchSkel = (props) => {
                 </Grid>
             </Grid>
             :
-            <Grid container direction="column" alignItems="center" jusity="center" spacing={1} style={{ marginTop: "30px" }}>
+            <Grid container direction="column" alignItems="center" jusity="center" spacing={1}>
                 <Grid item xs={12}>
                     <Skeleton width={300} height={25} />
                 </Grid>

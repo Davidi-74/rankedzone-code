@@ -3,6 +3,7 @@ import { useState } from "react"
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import placement from '../mui/matchMVPPlacement'
+import dataPlacement from "../mui/matchMVPsDataPlacement"
 
 const MatchMVPs = (props) => {
     const [teamKills, setTeamKills] = useState(props.teamKills)
@@ -37,6 +38,7 @@ const MatchMVPs = (props) => {
     }
 
     const placementDesign = placement();
+    const dataPlacementDesign = dataPlacement();
     return (
         <Paper style={{ background: "#353535", marginBottom: "10px" }}>
             <Button onClick={() => setShowComp(!showComp)} fullWidth>
@@ -56,8 +58,8 @@ const MatchMVPs = (props) => {
                                                         TOP TEAM KILLS
                                                     </h4>
                                                 </Grid>
-                                                <Grid container item xs={12} direction="row" alignItems="center" justify="flex-start" style={{ background: "#4d4d4d", borderTopLeftRadius: "4px", borderTopRightRadius: "4px" }}>
-                                                    <Grid item xs={1} >
+                                                <Grid container item xs={12} direction="row" alignItems="stretch" justify="flex-start" style={{ background: "#4d4d4d", borderTopLeftRadius: "4px", borderTopRightRadius: "4px" }}>
+                                                    <Grid item xs={1}>
                                                         <Paper className={placementDesign.first}>
                                                             1
                                                         </Paper>
@@ -67,11 +69,11 @@ const MatchMVPs = (props) => {
                                                             {teammates(0)}
                                                         </Box>
                                                     </Grid>
-                                                    <Grid item xs={1}>
+                                                    <Grid item xs={1} className={dataPlacementDesign.root}>
                                                         {teamKills[0].teamStats.kills}
                                                     </Grid>
                                                 </Grid>
-                                                <Grid container item xs={12} direction="row" alignItems="center" justify="flex-start" style={{ background: "#707070" }}>
+                                                <Grid container item xs={12} direction="row" alignItems="stretch" justify="flex-start" style={{ background: "#707070" }}>
                                                     <Grid item xs={1}>
                                                         <Paper className={placementDesign.second}>
                                                             2
@@ -82,11 +84,11 @@ const MatchMVPs = (props) => {
                                                             {teammates(1)}
                                                         </Box>
                                                     </Grid>
-                                                    <Grid item xs={1}>
+                                                    <Grid item xs={1} className={dataPlacementDesign.root}>
                                                         {teamKills[1].teamStats.kills}
                                                     </Grid>
                                                 </Grid>
-                                                <Grid container item xs={12} direction="row" alignItems="center" justify="flex-start" style={{ background: "#4d4d4d", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }}>
+                                                <Grid container item xs={12} direction="row" alignItems="stretch" justify="flex-start" style={{ background: "#4d4d4d", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }}>
                                                     <Grid item xs={1}>
                                                         <Paper className={placementDesign.third}>
                                                             3
@@ -97,7 +99,7 @@ const MatchMVPs = (props) => {
                                                             {teammates(2)}
                                                         </Box>
                                                     </Grid>
-                                                    <Grid item xs={1}>
+                                                    <Grid item xs={1} className={dataPlacementDesign.root}>
                                                         {teamKills[2].teamStats.kills}
                                                     </Grid>
                                                 </Grid>
@@ -118,7 +120,7 @@ const MatchMVPs = (props) => {
                                                 TOP PLAYER KILLS
                                             </h4>
                                         </Grid>
-                                        <Grid container item xs={12} direction="row" alignItems="center" justify="flex-start" style={{ background: "#4d4d4d", borderTopLeftRadius: "4px", borderTopRightRadius: "4px" }}>
+                                        <Grid container item xs={12} direction="row" alignItems="stretch" justify="flex-start" style={{ background: "#4d4d4d", borderTopLeftRadius: "4px", borderTopRightRadius: "4px" }}>
                                             <Grid item xs={1}>
                                                 <Paper className={placementDesign.first}>
                                                     1
@@ -129,11 +131,11 @@ const MatchMVPs = (props) => {
                                                     {playerKills[0].username}
                                                 </Box>
                                             </Grid>
-                                            <Grid item xs={1}>
+                                            <Grid item xs={1} className={dataPlacementDesign.root}>
                                                 {playerKills[0].kills}
                                             </Grid>
                                         </Grid>
-                                        <Grid container item xs={12} direction="row" alignItems="center" justify="flex-start" style={{ background: "#707070" }}>
+                                        <Grid container item xs={12} direction="row" alignItems="stretch" justify="flex-start" style={{ background: "#707070" }}>
                                             <Grid item xs={1}>
                                                 <Paper className={placementDesign.second}>
                                                     2
@@ -144,11 +146,11 @@ const MatchMVPs = (props) => {
                                                     {playerKills[1].username}
                                                 </Box>
                                             </Grid>
-                                            <Grid item xs={1}>
+                                            <Grid item xs={1} className={dataPlacementDesign.root}>
                                                 {playerKills[1].kills}
                                             </Grid>
                                         </Grid>
-                                        <Grid container item xs={12} direction="row" alignItems="center" justify="flex-start" style={{ background: "#4d4d4d", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }}>
+                                        <Grid container item xs={12} direction="row" alignItems="stretch" justify="flex-start" style={{ background: "#4d4d4d", borderBottomLeftRadius: "4px", borderBottomRightRadius: "4px" }}>
                                             <Grid item xs={1}>
                                                 <Paper className={placementDesign.third}>
                                                     3
@@ -159,7 +161,7 @@ const MatchMVPs = (props) => {
                                                     {playerKills[2].username}
                                                 </Box>
                                             </Grid>
-                                            <Grid item xs={1}>
+                                            <Grid item xs={1} className={dataPlacementDesign.root}>
                                                 {playerKills[2].kills}
                                             </Grid>
                                         </Grid>
