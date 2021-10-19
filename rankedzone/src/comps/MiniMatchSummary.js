@@ -130,6 +130,8 @@ const MiniMatchSummary = (props) => {
             case "br_rebirth_resurgence_trios": return matchBgImage.verdansk;
             case "br_rebirth_resurgence_quads": return matchBgImage.verdansk;
             case "br_bodycount_pwergrb": return matchBgImage.verdansk;
+            case "br_rebirth_shsnp_name3": return matchBgImage.rebirth;
+            case "br_rebirth_shsnp_name4": return matchBgImage.rebirth;
             default: return matchBgImage.verdansk;
         }
     }
